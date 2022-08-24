@@ -1,9 +1,40 @@
-html,
+html {
+  font-size: 62.5%; /* 1rem = 10pxにする設定 */
+}
+
+:root {
+  /* カラー(色) */
+  --white: #fff;
+  --black: #000;
+  --light-blue: #B0DEEC;
+
+  /* タイポグラフィ(フォントサイズ) */
+  --body: clamp(1.4rem, 1.327rem + 0.36vw, 1.6rem); /* 14-16px */
+  --heading: clamp(4rem, 2.545rem + 7.27vw, 8rem); /* 40-80px */
+
+  /* スペース (余白・間隔) */
+  --space-s: clamp(2rem, 0.545rem + 7.27vw, 6rem); /* 20-60px */
+  --space-m: clamp(4rem, 2.545rem + 7.27vw, 8rem); /* 40-80px */
+  --space-l: clamp(6rem, 4.545rem + 7.27vw, 10rem); /* 60-100px */
+}
+
 body {
-  padding: 0;
+  color: var(--black);
+  font-size: var(--body);
+}
+
+h1 {
+  font-size: var(--heading);
+}
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
 }
 
 a {
@@ -11,16 +42,9 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}
+
+
+
+
+
