@@ -1,0 +1,8 @@
+/* デスクトップ */
+@media (min-width: 768px) {
+  .list {
+    display: flex;
+    font-size: 2.4rem;
+    gap: 8rem;
+  }
+}

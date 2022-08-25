@@ -1,0 +1,7 @@
+.text {
+  padding-bottom: var(--space-m);
+}
+
+.subtitle {
+  font-size: var(--small-heading);
+}

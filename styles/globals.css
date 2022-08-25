@@ -6,13 +6,19 @@ html {
   /* カラー(色) */
   --white: #fff;
   --black: #000;
-  --light-blue: #B0DEEC;
+  --light-blue: #b0deec;
 
   /* タイポグラフィ(フォントサイズ) */
   --body: clamp(1.4rem, 1.327rem + 0.36vw, 1.6rem); /* 14-16px */
-  --heading: clamp(4rem, 2.545rem + 7.27vw, 8rem); /* 40-80px */
+  --heading1: clamp(4rem, 2.545rem + 7.27vw, 8rem); /* 40-80px */
+  --heading2: clamp(2.4rem, 2.109rem + 1.45vw, 3.2rem); /* 24-32px */
+  --heading3: clamp(1.8rem, 1.582rem + 1.09vw, 2.4rem); /* 18-24px */
+  --small-heading: clamp(2rem, 1.273rem + 3.64vw, 4rem); /* 20-40px */
+  --date: clamp(1.6rem, 1.455rem + 0.73vw, 2rem); /* 16-20px */
+  --pf-name: clamp(3rem, 2.636rem + 1.82vw, 4rem); /*30-40px */
 
   /* スペース (余白・間隔) */
+  --space-xs: clamp(1rem, 0.636rem + 1.82vw, 2rem); /* 10-20px */
   --space-s: clamp(2rem, 0.545rem + 7.27vw, 6rem); /* 20-60px */
   --space-m: clamp(4rem, 2.545rem + 7.27vw, 8rem); /* 40-80px */
   --space-l: clamp(6rem, 4.545rem + 7.27vw, 10rem); /* 60-100px */
@@ -20,11 +26,16 @@ html {
 
 body {
   color: var(--black);
+  background-color: var(--light-blue);
   font-size: var(--body);
 }
 
 h1 {
-  font-size: var(--heading);
+  font-size: var(--heading1);
+}
+
+h2 {
+  font-size: var(--heading2);
 }
 
 * {
@@ -41,10 +52,3 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
-
-
-
-
-
-

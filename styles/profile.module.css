@@ -1,0 +1,16 @@
+.profile {
+  background-color: var(--white);
+  border-radius: 20px;
+  padding: 40px 20px 20px;
+  text-align: center;
+}
+
+.icon {
+  width: 180px;
+  margin: 0 auto;
+}
+
+.myName {
+  margin: var(--space-xs) 0;
+  font-size: var(--heading3);
+}

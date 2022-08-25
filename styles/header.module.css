@@ -1,0 +1,8 @@
+.header {
+  background-color: var(--white);
+  padding: 1.2rem 0;
+}
+
+.flexContainer {
+  composes: spaceBetween from 'styles/utils.module.css';
+}
