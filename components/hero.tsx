@@ -1,12 +1,12 @@
 import styles from 'styles/hero.module.css'
 
 type Props = {
-  title: string,
-  subtitle: string,
+  title: string
+  subtitle: string
   imageOn?: boolean
 }
 
-const Hero = ( {title, subtitle, imageOn = false}: Props) => {
+const Hero = ({ title, subtitle, imageOn = false }: Props) => {
   return (
     <div>
       <div className={styles.text}>

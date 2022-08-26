@@ -4,7 +4,7 @@ type Props = {
   contentsLists: Array<string>
 }
 
-const contentsList = ({contentsLists}: Props) => {
+const contentsList = ({ contentsLists }: Props) => {
   return (
     <div className={styles.contentsList}>
       <h2>Contents</h2>
