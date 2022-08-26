@@ -1,8 +1,106 @@
 /* デスクトップ */
 @media (min-width: 768px) {
+  .btn {
+    display: none;
+  }
+
   .list {
     display: flex;
     font-size: 2.4rem;
     gap: 8rem;
+  }
+}
+
+@media (max-width: 767px) {
+  /* ハンバーガーメニューのボタン */
+  .btn {
+    all: unset;
+    outline: revert;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    position: relative;
+    z-index: 200;
+    border: 1px solid var(--white);
+    border-radius: 50%;
+  }
+
+  .btn::before,
+  .btn::after,
+  .btn .bar {
+    grid-area: 1 / 1;
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background-color: currentColor;
+    margin: 0 auto;
+    transition: transform 0.4s;
+  }
+
+  .close .btn::before {
+    transform: translateY(-6px);
+  }
+
+  .close .btn::after {
+    transform: translateY(6px);
+  }
+
+  .open .btn::before {
+    transform: rotate(45deg);
+  }
+
+  .open .btn::after {
+    transform: rotate(-45deg);
+  }
+
+  .open .btn .bar {
+    transform: scale(0);
+  }
+
+  .close .btn {
+    color: var(--black);
+    background-color: var(--light-blue);
+  }
+
+  .open .btn {
+    color: var(--white);
+  }
+
+  /* メニュー */
+  .list {
+    position: fixed;
+    width: 100%;
+    inset: 0;
+    z-index: 100;
+    color: var(--white);
+    background-color: var(--light-blue);
+    transition: transform 0.4s;
+    /*配置*/
+    display: grid;
+    gap: 35px;
+    place-content: center;
+    text-align: center;
+  }
+
+  .close .list {
+    transform: translateX(100%);
+  }
+}
+
+@media (hover: hover) {
+  .list a:hover {
+    color: var(--accent);
+  }
+}
+
+@media (hover: none) {
+  .list a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .list a:active {
+    color: var(--accent);
   }
 }

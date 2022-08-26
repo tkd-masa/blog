@@ -2,11 +2,11 @@
   composes: sideBySide from 'styles/utils.module.css';
   padding-top: var(--space-s);
   padding-bottom: var(--space-l);
+  gap: var(--space-s);
 }
 
 .main {
   border-radius: 20px;
-  padding: 0 70px var(--space-m);
   background-color: var(--white);
 }
 
@@ -15,11 +15,9 @@
     /* width: 842px; */
     width: 65.78125%; /* 842/1280 */
   }
-  
+
   .sidebar {
     /* width: 400px; */
     width: 31.25%; /* 400/1289 */
   }
 }
-
-

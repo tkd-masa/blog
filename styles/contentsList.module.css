@@ -1,17 +1,17 @@
 .contentsList {
-    border: 1px solid #ccc;
-    margin: 0 auto;
-    padding: 0 40px var(--space-s);
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  padding: 0 40px var(--space-s);
 }
 
 .contentsList h2 {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .contentsList ol {
-    font-size: var()
+  font-size: var();
 }
 
 .contentsList li {
-    margin-top: var(--space-xs);
+  margin-top: var(--space-xs);
 }

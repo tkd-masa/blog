@@ -4,5 +4,11 @@
 }
 
 .flexContainer {
-  composes: sideBySide from 'styles/utils.module.css';
+  composes: sideBySideCenter from 'styles/utils.module.css';
+}
+
+@media (min-width: 768px) {
+  .flexContainer {
+    composes: sideBySide from 'styles/utils.module.css';
+  }
 }
