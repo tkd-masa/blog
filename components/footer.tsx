@@ -1,5 +1,6 @@
 import Logo from 'components/logo'
 import Container from 'components/container'
+import Social from 'components/social'
 import styles from 'styles/footer.module.css'
 
 const Footer = () => {
@@ -8,7 +9,7 @@ const Footer = () => {
       <Container large>
         <div className={styles.flexContainer}>
           <Logo />
-          [ソーシャル]
+          <Social iconSize="30px" />
         </div>
       </Container>
     </footer>
