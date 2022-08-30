@@ -8,6 +8,7 @@
 .main {
   border-radius: 20px;
   background-color: var(--white);
+  padding-bottom: var(--space-m);
 }
 
 @media (min-width: 768px) {

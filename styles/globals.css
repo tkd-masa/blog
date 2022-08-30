@@ -28,7 +28,6 @@ body {
   color: var(--black);
   background-color: var(--light-blue);
   font-size: var(--body);
-  padding-top: var(--header-height);
 }
 
 h1 {
