@@ -7,3 +7,9 @@ export const siteMeta = {
   siteType: 'website',
   siteIcon: 'favicon.ico',
 }
+
+export const eyecatchLocal = {
+  url: '/eyecatchLocal',
+  width: 1920,
+  height: 1280
+}

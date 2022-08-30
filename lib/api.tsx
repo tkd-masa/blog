@@ -5,7 +5,7 @@ export const client = createClient({
   apiKey: process.env.API_KEY || '',
 })
 
-export const getPostBySlug = async (slug: string) => {
+export const getPostBySlug = async (slug: string | string[] | undefined) => {
   try {
     const post = await client.get({
       endpoint: 'blogs',
