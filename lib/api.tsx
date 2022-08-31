@@ -22,11 +22,28 @@ export const getAllSlugs = async (limit = 100) => {
   try {
     const slugs = await client.get({
       endpoint: 'blogs',
-      queries: { fields: 'title,slug', orders: '-publishDate', limit: limit},
+      queries: { fields: 'title,slug', orders: '-publishDate', limit: limit },
     })
     return slugs.contents
   } catch (err) {
     console.log(' -- getAllSlugs --')
     console.log('err')
+  }
+}
+
+export const getAllPosts = async (limit = 100) => {
+  try {
+    const posts = await client.get({
+      endpoint: 'blogs',
+      queries: {
+        fields: 'title,slug,eyecatch',
+        orders: '--publishDate',
+        limit: limit,
+      },
+    })
+    return posts.contents
+  } catch (err) {
+    console.log('~~ getAllPosts ~~')
+    console.log(err)
   }
 }

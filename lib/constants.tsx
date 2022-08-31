@@ -11,5 +11,5 @@ export const siteMeta = {
 export const eyecatchLocal = {
   url: '/eyecatchLocal',
   width: 1920,
-  height: 1280
+  height: 1280,
 }
