@@ -11,6 +11,7 @@ import Meta from 'components/meta'
 import { extractText } from 'lib/extract-text'
 import { getPlaiceholder } from 'plaiceholder'
 import { prevNextPost } from 'lib/prev-next-post'
+import Pagination from 'components/pagination'
 
 // ローカルの代替キャッチ画像
 import { eyecatchLocal } from 'lib/constants'
@@ -24,14 +25,14 @@ type Props = {
     height: number
     blurDataURL: string
   }
-  content: string,
-  description: string,
+  content: string
+  description: string
   prevPost: {
-    title: string,
+    title: string
     slug: string
-  },
+  }
   nextPost: {
-    title: string,
+    title: string
     slug: string
   }
 }
@@ -39,7 +40,7 @@ type Props = {
 const Post = (props: Props) => {
   return (
     <Container large>
-      <Meta 
+      <Meta
         pageTitle={props.title}
         pageDesc={props.description}
         pageImg={props.eyecatch.url}
@@ -57,7 +58,7 @@ const Post = (props: Props) => {
             height={props.eyecatch.height}
             sizes="(min-width: 1280px) 1280px, 100vw"
             priority
-            placeholder='blur'
+            placeholder="blur"
             blurDataURL={props.eyecatch.blurDataURL}
           />
         </figure>
@@ -65,17 +66,21 @@ const Post = (props: Props) => {
         <TwoColumn>
           <TwoColumnMain>
             <Container>
-            <PostBody>
-              <ConvertBody contentHTML={props.content} />
-            </PostBody>
+              <PostBody>
+                <ConvertBody contentHTML={props.content} />
+              </PostBody>
             </Container>
           </TwoColumnMain>
           <TwoColumnSidebar>
             <Profile />
           </TwoColumnSidebar>
         </TwoColumn>
-        <div>{props.prevPost.title} {props.prevPost.slug}</div>
-        <div>{props.nextPost.title} {props.nextPost.slug}</div>
+        <Pagination
+          prevText={props.prevPost.title}
+          prevUrl={`/${props.prevPost.slug}`}
+          nextText={props.nextPost.title}
+          nextUrl={`/${props.nextPost.slug}`}
+        />
       </article>
     </Container>
   )
@@ -87,16 +92,15 @@ export const getStaticPaths = async () => {
   const allSlugs = await getAllSlugs()
 
   return {
-
-    paths: allSlugs.map(( {slug}: {slug: string} ) => `/${slug}`),
-    fallback: false
+    paths: allSlugs.map(({ slug }: { slug: string }) => `/${slug}`),
+    fallback: false,
   }
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const slug = context.params?.slug
 
-  const post = await getPostBySlug(slug);
+  const post = await getPostBySlug(slug)
 
   const description = extractText(post.content)
 
@@ -117,7 +121,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
       content: post.content,
       description: description,
       prevPost: prevPost,
-      nextPost: nextPost
+      nextPost: nextPost,
     },
   }
 }

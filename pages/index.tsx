@@ -2,35 +2,31 @@ import type { NextPage, GetStaticProps } from 'next'
 import Hero from 'components/hero'
 import Container from 'components/container'
 import Meta from 'components/meta'
-import { getPostBySlug } from 'lib/api'
+import Posts from 'components/posts'
+import { getAllPosts } from 'lib/api'
 
 type Props = {
-  title: string
-  publish: string
+  posts: { title: string; slug: string }[]
 }
 
-const Home: NextPage<Props> = (props) => {
+const Home: NextPage<Props> = ({ posts }: Props) => {
   return (
     <Container>
       <Meta pageTitle="HOME" pageDesc="ブログの記事一覧" />
       <Hero title="HOME" subtitle="ホーム" />
-      <h2>{props.title}</h2>
-      <p>{props.publish}</p>
+      <Posts posts={posts} />
     </Container>
   )
 }
 
 export default Home
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const slug = 'react'
-
-  const post = await getPostBySlug(slug)
+export const getStaticProps = async () => {
+  const posts = await getAllPosts()
 
   return {
     props: {
-      title: post.title,
-      publish: post.publishDate,
-    },
+      posts: posts
+    }
   }
 }
