@@ -1,3 +1,7 @@
+.stack {
+  margin-top: var(--space-xs);
+}
+
 .stack > * + * {
   margin-top: var(--space-xs);
 }
@@ -13,4 +17,9 @@
 .stack ul,
 .stack ol {
   list-style-position: inside;
+}
+
+.stack img {
+  border: 1px solid #000 !important;
+  border-radius: 5px;
 }
