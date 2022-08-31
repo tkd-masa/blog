@@ -1,7 +1,7 @@
 import type { GetStaticProps } from 'next'
 import Container from 'components/container'
 import PostHeader from 'components/post-header'
-import { getPostBySlug } from 'lib/api'
+import { getPostBySlug, getAllSlugs } from 'lib/api'
 import Image from 'next/image'
 import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-column'
 import Profile from 'components/profile'
@@ -10,6 +10,7 @@ import ConvertBody from 'components/convert-body'
 import Meta from 'components/meta'
 import { extractText } from 'lib/extract-text'
 import { getPlaiceholder } from 'plaiceholder'
+import { prevNextPost } from 'lib/prev-next-post'
 
 // ローカルの代替キャッチ画像
 import { eyecatchLocal } from 'lib/constants'
@@ -24,7 +25,15 @@ type Props = {
     blurDataURL: string
   }
   content: string,
-  description: string
+  description: string,
+  prevPost: {
+    title: string,
+    slug: string
+  },
+  nextPost: {
+    title: string,
+    slug: string
+  }
 }
 
 const Post = (props: Props) => {
@@ -65,6 +74,8 @@ const Post = (props: Props) => {
             <Profile />
           </TwoColumnSidebar>
         </TwoColumn>
+        <div>{props.prevPost.title} {props.prevPost.slug}</div>
+        <div>{props.nextPost.title} {props.nextPost.slug}</div>
       </article>
     </Container>
   )
@@ -73,8 +84,11 @@ const Post = (props: Props) => {
 export default Post
 
 export const getStaticPaths = async () => {
+  const allSlugs = await getAllSlugs()
+
   return {
-    paths: ['/react', '/vue', '/HTML_CSS'],
+
+    paths: allSlugs.map(( {slug}: {slug: string} ) => `/${slug}`),
     fallback: false
   }
 }
@@ -91,13 +105,19 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const { base64 } = await getPlaiceholder(eyecatch.url)
   eyecatch.blurDataURL = base64
 
+  const allSlugs = await getAllSlugs()
+
+  const [prevPost, nextPost] = prevNextPost(allSlugs, slug)
+
   return {
     props: {
       title: post.title,
       publish: post.publishDate,
       eyecatch: eyecatch,
       content: post.content,
-      description: description
+      description: description,
+      prevPost: prevPost,
+      nextPost: nextPost
     },
   }
 }
