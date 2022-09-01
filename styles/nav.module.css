@@ -79,9 +79,10 @@
     transition: transform 0.4s;
     /*配置*/
     display: grid;
-    gap: 35px;
+    gap: 40px;
     place-content: center;
     text-align: center;
+    font-size: 1.8rem;
   }
 
   .close .list {
