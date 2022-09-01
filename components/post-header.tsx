@@ -6,7 +6,7 @@ import styles from 'styles/post-header.module.css'
 type Props = {
   title: string
   subtitle: string
-  publish: string
+  publish?: string
 }
 
 const PostHeader = ({ title, subtitle, publish = '' }: Props) => {

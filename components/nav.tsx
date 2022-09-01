@@ -46,12 +46,12 @@ const Nav = () => {
           </Link>
         </li>
         <li>
-          <Link href="/Vue">
+          <Link href="/category/vue">
             <a>Vue.js</a>
           </Link>
         </li>
         <li>
-          <Link href="/React">
+          <Link href="/category/react">
             <a>React</a>
           </Link>
         </li>
