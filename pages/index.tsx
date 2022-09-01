@@ -3,12 +3,17 @@ import Hero from 'components/hero'
 import Container from 'components/container'
 import Meta from 'components/meta'
 import Posts from 'components/posts'
-import { getAllPosts } from 'lib/api'
+import { getAllPosts,getAllCategories } from 'lib/api'
 import { eyecatchLocal } from 'lib/constants'
 import { getPlaiceholder } from 'plaiceholder'
 
 type Props = {
-  posts: { title: string; slug: string, eyecatch:{ url: string, width: number, height: number, blurDataURL: string} }[]
+  posts: {
+    title: string
+    slug: string
+    eyecatch: { url: string; width: number; height: number; blurDataURL: string },
+    categories: string[]
+  }[]
 }
 
 const Home: NextPage<Props> = ({ posts }: Props) => {
@@ -24,7 +29,7 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
 export default Home
 
 export const getStaticProps = async () => {
-  const posts = await getAllPosts()
+  const posts = await getAllPosts(4)
 
   for (const post of posts) {
     if (!post.hasOwnProperty('eyecatch')) {
@@ -36,7 +41,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      posts: posts
-    }
+      posts: posts,
+    },
   }
 }

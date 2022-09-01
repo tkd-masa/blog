@@ -51,6 +51,7 @@ const Post = (props: Props) => {
         <PostHeader title={props.title} subtitle="Blog Article" publish={props.publish} />
         <figure>
           <Image
+            key={props.eyecatch.url}
             src={props.eyecatch.url}
             alt=""
             layout="responsive"
