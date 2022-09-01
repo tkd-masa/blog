@@ -1,8 +1,5 @@
 .flexContainer {
   composes: sideBySide from 'styles/utils.module.css';
-  padding-top: var(--space-s);
-  padding-bottom: var(--space-l);
-  gap: var(--space-s);
 }
 
 .main {
