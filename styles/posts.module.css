@@ -1,6 +1,6 @@
 .gridContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: var(--space-s);
   margin-top: var(--space-xs);
   margin-bottom: var(--space-lg);
@@ -40,4 +40,10 @@
 	background-color: #fff;
 	border: 1px solid var(--black);
 	border-radius: 2em;
+}
+
+@media (min-width: 768px) {
+  .gridContainer {
+    grid-template-columns: 1fr 1fr;
+  }
 }
