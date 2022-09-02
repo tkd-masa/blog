@@ -2,27 +2,28 @@ import { getAllCategories, getAllPostsByCategory } from 'lib/api'
 import Meta from 'components/meta'
 import Container from 'components/container'
 import PostHeader from 'components/post-header'
+import Hero from 'components/hero'
 import Posts from 'components/posts'
 import type { GetStaticProps } from 'next'
 import { eyecatchLocal } from 'lib/constants'
 import { getPlaiceholder } from 'plaiceholder'
 
 type Props = {
-  name: string,
+  name: string
   posts: {
     title: string
     slug: string
-    eyecatch: { url: string; width: number; height: number; blurDataURL: string },
+    eyecatch: { url: string; width: number; height: number; blurDataURL: string }
     categories: string[]
-  }[],
+  }[]
 }
 
-const Category = ({ posts, name}: Props) => {
+const Category = ({ posts, name }: Props) => {
   return (
     <Container>
       <Meta pageTitle={name} pageDesc={`${name}に関する記事`} />
-      <PostHeader title={name} subtitle="Blog Category" />
-      <Posts posts={posts}/>
+      <Hero title={name} subtitle={`${name}に関する記事`}/>
+      <Posts posts={posts} />
     </Container>
   )
 }
@@ -32,7 +33,7 @@ export default Category
 export const getStaticPaths = async () => {
   const allCats = await getAllCategories()
   return {
-    paths: allCats.map(( {slug}: {slug: string} ) => `/category/${slug}`),
+    paths: allCats.map(({ slug }: { slug: string }) => `/category/${slug}`),
     fallback: false,
   }
 }
@@ -40,12 +41,9 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const catSlug = context.params?.slug
 
-  // const allCats = await getAllCategories()
-  // const cat = allCats.find(({ slug }: { slug: string }) => slug === catSlug)
-
   const posts = await getAllPostsByCategory(catSlug)
-  
-  for(const post of posts) {
+
+  for (const post of posts) {
     if (!post.hasOwnProperty('eyecatch')) {
       post.eyecatch = eyecatchLocal
     }
@@ -56,7 +54,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       posts: posts,
-      name:catSlug
+      name: catSlug,
     },
   }
 }
