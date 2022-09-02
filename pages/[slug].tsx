@@ -3,8 +3,6 @@ import Container from 'components/container'
 import PostHeader from 'components/post-header'
 import { getPostBySlug, getAllSlugs } from 'lib/api'
 import Image from 'next/image'
-import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-column'
-import Profile from 'components/profile'
 import PostBody from 'components/post-body'
 import ConvertBody from 'components/convert-body'
 import Meta from 'components/meta'
@@ -47,7 +45,8 @@ const Post = (props: Props) => {
         pageImgW={props.eyecatch.width}
         pageImgH={props.eyecatch.height}
       />
-      <article>
+      <article  style={{backgroundColor: "var(--white)", borderRadius: "20px", padding: "var(--space-xs) 0 var(--space-l)"}}>
+        <Container>
         <PostHeader title={props.title} subtitle="Blog Article" publish={props.publish} />
         <figure>
           <Image
@@ -63,25 +62,16 @@ const Post = (props: Props) => {
             blurDataURL={props.eyecatch.blurDataURL}
           />
         </figure>
-
-        <TwoColumn>
-          <TwoColumnMain>
-            <Container>
               <PostBody>
                 <ConvertBody contentHTML={props.content} />
               </PostBody>
-            </Container>
-          </TwoColumnMain>
-          <TwoColumnSidebar>
-            <Profile />
-          </TwoColumnSidebar>
-        </TwoColumn>
         <Pagination
           prevText={props.prevPost.title}
           prevUrl={`/${props.prevPost.slug}`}
           nextText={props.nextPost.title}
           nextUrl={`/${props.nextPost.slug}`}
         />
+        </Container>
       </article>
     </Container>
   )
