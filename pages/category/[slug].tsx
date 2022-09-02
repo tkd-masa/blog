@@ -1,7 +1,6 @@
 import { getAllCategories, getAllPostsByCategory } from 'lib/api'
 import Meta from 'components/meta'
 import Container from 'components/container'
-import PostHeader from 'components/post-header'
 import Hero from 'components/hero'
 import Posts from 'components/posts'
 import type { GetStaticProps } from 'next'
