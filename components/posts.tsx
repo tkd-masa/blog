@@ -9,8 +9,8 @@ type Props = {
   posts: {
     title: string
     slug: string
-    eyecatch: { url: string; width: number; height: number; blurDataURL: string },
-    publishDate?: string,
+    eyecatch: { url: string; width: number; height: number; blurDataURL: string }
+    publishDate?: string
     categories: string[]
   }[]
 }
@@ -24,7 +24,7 @@ const Posts = ({ posts }: Props) => {
           slug,
           eyecatch,
           publishDate,
-          categories
+          categories,
         }: {
           title: string
           slug: string
