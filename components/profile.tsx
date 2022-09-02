@@ -1,6 +1,6 @@
 import styles from 'styles/profile.module.css'
 import Image from 'next/image'
-import icon from 'images/icon.png'
+import icon from 'images/icon.jpg'
 
 const profile = () => {
   return (
