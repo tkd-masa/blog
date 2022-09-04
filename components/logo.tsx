@@ -1,11 +1,16 @@
 import Link from 'next/link'
 import styles from 'styles/logo.module.css'
+import IconImage from 'images/logo.svg'
 
-const Logo = () => {
+type Props = {
+  height: number
+}
+
+const Logo = ({height}: Props) => {
   return (
     <Link href="/">
       <a className={styles.logo}>
-        TakeLog<span className={styles.logoSubtitle}>Engineering Blog</span>
+        <IconImage height={`${height}px`}/>
       </a>
     </Link>
   )
