@@ -1,5 +1,5 @@
 .stack {
-  padding: var(--space-sm) 0;
+  padding-bottom: var(--space-xs);
 }
 
 .stack > * + * {
@@ -12,12 +12,13 @@
 }
 
 .title {
+  font-size: var(--heading2);
   --stack-space: 0.2em;
 }
 
 .publish {
   display: flex;
   gap: 0.5em;
-  color: var(--black);
-  font-size: var(--small-heading);
+  color: var(--gray-50);
+  font-size: var(--date);
 }
