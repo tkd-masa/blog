@@ -15,7 +15,7 @@ const PostHeader = ({ title, subtitle, publish = '' }: Props) => {
       <p className={styles.subtitle}>{subtitle}</p>
       {publish && (
         <div className={styles.publish}>
-          <FontAwesomeIcon icon={faClock} size="lg" color="var(--black)" />
+          <FontAwesomeIcon icon={faClock} size="lg" color="var(--gray-50)" />
           <ConvertDate dateISO={publish} />
         </div>
       )}

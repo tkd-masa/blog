@@ -52,7 +52,7 @@ const Posts = ({ posts }: Props) => {
                 <h2>{title}</h2>
                 {publishDate && (
                   <div className={styles.publish}>
-                    <FontAwesomeIcon icon={faClock} size="lg" color="var(--black)" />
+                    <FontAwesomeIcon icon={faClock} size="lg" color="var(--gray-50)" />
                     <ConvertDate dateISO={publishDate} />
                   </div>
                 )}
