@@ -45,32 +45,34 @@ const Post = (props: Props) => {
         pageImgW={props.eyecatch.width}
         pageImgH={props.eyecatch.height}
       />
-      <article  style={{backgroundColor: "var(--white)", borderRadius: "20px", padding: "var(--space-xs) 0 var(--space-l)"}}>
+      <article
+        style={{ backgroundColor: 'var(--white)', borderRadius: '20px', padding: 'var(--space-xs) 0 var(--space-l)' }}
+      >
         <Container>
-        <PostHeader title={props.title} subtitle="Blog Article" publish={props.publish} />
-        <figure>
-          <Image
-            key={props.eyecatch.url}
-            src={props.eyecatch.url}
-            alt=""
-            layout="responsive"
-            width={props.eyecatch.width}
-            height={props.eyecatch.height}
-            sizes="(min-width: 1280px) 1280px, 100vw"
-            priority
-            placeholder="blur"
-            blurDataURL={props.eyecatch.blurDataURL}
+          <PostHeader title={props.title} subtitle="Blog Article" publish={props.publish} />
+          <figure>
+            <Image
+              key={props.eyecatch.url}
+              src={props.eyecatch.url}
+              alt=""
+              layout="responsive"
+              width={props.eyecatch.width}
+              height={props.eyecatch.height}
+              sizes="(min-width: 1280px) 1280px, 100vw"
+              priority
+              placeholder="blur"
+              blurDataURL={props.eyecatch.blurDataURL}
+            />
+          </figure>
+          <PostBody>
+            <ConvertBody contentHTML={props.content} />
+          </PostBody>
+          <Pagination
+            prevText={props.prevPost.title}
+            prevUrl={`/${props.prevPost.slug}`}
+            nextText={props.nextPost.title}
+            nextUrl={`/${props.nextPost.slug}`}
           />
-        </figure>
-              <PostBody>
-                <ConvertBody contentHTML={props.content} />
-              </PostBody>
-        <Pagination
-          prevText={props.prevPost.title}
-          prevUrl={`/${props.prevPost.slug}`}
-          nextText={props.nextPost.title}
-          nextUrl={`/${props.nextPost.slug}`}
-        />
         </Container>
       </article>
     </Container>
