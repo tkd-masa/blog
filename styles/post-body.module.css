@@ -8,6 +8,7 @@
 
 .stack h2 {
   margin-top: var(--space-s);
+  font-size: var(--heading3);
 }
 
 .stack p {
