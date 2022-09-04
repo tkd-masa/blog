@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className={styles.wrapper}>
       <Container large>
         <div className={styles.flexContainer}>
-          <Logo />
+          <Logo height={40}/>
           <Social iconSize="30px" />
         </div>
       </Container>
