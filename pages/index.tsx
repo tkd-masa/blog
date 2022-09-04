@@ -29,7 +29,7 @@ const Home: NextPage<Props> = ({ posts }: Props) => {
 export default Home
 
 export const getStaticProps = async () => {
-  const posts = await getAllPosts(4)
+  const posts = await getAllPosts(6)
 
   for (const post of posts) {
     if (!post.hasOwnProperty('eyecatch')) {
