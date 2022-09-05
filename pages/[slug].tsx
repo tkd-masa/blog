@@ -10,9 +10,9 @@ import { extractText } from 'lib/extract-text'
 import { getPlaiceholder } from 'plaiceholder'
 import { prevNextPost } from 'lib/prev-next-post'
 import Pagination from 'components/pagination'
-import cheerio from 'cheerio';
+import cheerio from 'cheerio'
 import hljs from 'highlight.js'
-import 'highlight.js/styles/tomorrow-night-blue.css';
+import 'highlight.js/styles/tomorrow-night-blue.css'
 
 // ローカルの代替キャッチ画像
 import { eyecatchLocal } from 'lib/constants'
@@ -98,14 +98,14 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
   const post = await getPostBySlug(slug)
 
-// シンタックスハイライトを適用する処理
+  // シンタックスハイライトを適用する処理
   const $ = cheerio.load(post.content)
 
   $('pre code').each((_, element) => {
-    const result = hljs.highlightAuto($(element).text());
-    $(element).html(result.value);
-    $(element).addClass('hljs');
-  });
+    const result = hljs.highlightAuto($(element).text())
+    $(element).html(result.value)
+    $(element).addClass('hljs')
+  })
 
   const description = extractText(post.content)
 
