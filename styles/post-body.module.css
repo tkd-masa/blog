@@ -9,6 +9,9 @@
 .stack h2 {
   margin-top: var(--space-s);
   font-size: var(--heading3);
+  background-color: var(--light-blue);
+  padding: 10px 20px;
+  border-radius: 5px;
 }
 
 .stack p {
