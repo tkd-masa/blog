@@ -5,6 +5,7 @@ import icon from 'images/icon.jpg'
 const profile = () => {
   return (
     <div className={styles.profile}>
+      <h2>Profile</h2>
       <div className={styles.icon}>
         <Image src={icon} alt="アイコン画像" layout="responsive" width="360" height="360" />
       </div>
