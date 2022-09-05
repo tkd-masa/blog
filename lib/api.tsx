@@ -54,7 +54,7 @@ export const getAllCategories = async (limit = 100) => {
       endpoint: 'categories',
       queries: {
         fields: 'name,id,slug',
-        limit: limit
+        limit: limit,
       },
     })
     return categories.contents
@@ -71,8 +71,8 @@ export const getAllPostsByCategory = async (catID: string | string[] | undefined
       queries: {
         filters: `categories[contains]${catID}`,
         orders: '-publishDate',
-        limit: limit
-      }
+        limit: limit,
+      },
     })
     return posts.contents
   } catch (err) {
