@@ -6,11 +6,11 @@ type Props = {
   height: number
 }
 
-const Logo = ({height}: Props) => {
+const Logo = ({ height }: Props) => {
   return (
     <Link href="/">
       <a className={styles.logo}>
-        <IconImage height={`${height}px`}/>
+        <IconImage height={`${height}px`} />
       </a>
     </Link>
   )

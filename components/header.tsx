@@ -24,7 +24,7 @@ const Header = () => {
       `}</style>
       <Container large>
         <div className={styles.flexContainer}>
-          <Logo height={60}/>
+          <Logo height={60} />
           <Nav />
         </div>
       </Container>
