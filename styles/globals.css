@@ -61,3 +61,6 @@ main {
   padding-bottom: var(--space-l);
 }
 
+pre code{
+  border-radius: 10px;
+}
