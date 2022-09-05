@@ -12,7 +12,7 @@ import { prevNextPost } from 'lib/prev-next-post'
 import Pagination from 'components/pagination'
 import cheerio from 'cheerio';
 import hljs from 'highlight.js'
-import 'highlight.js/styles/magula.css';
+import 'highlight.js/styles/tomorrow-night-blue.css';
 
 // ローカルの代替キャッチ画像
 import { eyecatchLocal } from 'lib/constants'
