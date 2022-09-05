@@ -61,21 +61,3 @@ main {
   padding-bottom: var(--space-l);
 }
 
-/* コードの表示設定 */
-pre,
-code {
-  background-color: #1a2638;
-  color: var(--white);
-  padding: 1rem;
-  border-radius: 10px;
-  overflow: auto;
-}
-
-pre code {
-  background-color: transparent;
-}
-
-code {
-  display: inline-block;
-  width: 100%;
-}
