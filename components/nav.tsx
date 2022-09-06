@@ -42,16 +42,16 @@ const Nav = () => {
         </li>
         <li>
           <Link href="/category/HTML_CSS">
-            <a onClick={closeNav}>HTML/CSS</a>
+            <a onClick={closeNav}>HTML_CSS</a>
           </Link>
         </li>
         <li>
-          <Link href="/category/vue">
+          <Link href="/category/Vue">
             <a onClick={closeNav}>Vue.js</a>
           </Link>
         </li>
         <li>
-          <Link href="/category/react">
+          <Link href="/category/React">
             <a onClick={closeNav}>React</a>
           </Link>
         </li>
