@@ -35,6 +35,7 @@ type Props = {
   }[]
   toc_visible: boolean
   description: string
+  tag: string[]
   prevPost: {
     title: string
     slug: string
@@ -59,7 +60,7 @@ const Post = (props: Props) => {
         style={{ backgroundColor: 'var(--white)', borderRadius: '20px', padding: 'var(--space-xs) 0 var(--space-l)' }}
       >
         <Container>
-          <PostHeader title={props.title} subtitle="Blog Article" publish={props.publish} />
+          <PostHeader title={props.title} tag={props.tag} publish={props.publish} />
           <figure>
             <Image
               key={props.eyecatch.url}
@@ -138,6 +139,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
       toc: toc,
       toc_visible: post.toc_visible,
       description: description,
+      tag: post.categories,
       prevPost: prevPost,
       nextPost: nextPost,
     },
