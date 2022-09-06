@@ -1,0 +1,22 @@
+.toc {
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  padding: 0 40px var(--space-s);
+  border-radius: 5px;
+}
+
+.tocHead {
+  font-size: var(--heading3);
+  font-weight: 700;
+}
+
+.toc svg {
+  margin-right: 7px;
+}
+
+.toc li {
+  padding: var(--space-xs) 0;
+  list-style: revert;
+  list-style-position: inside;
+  border-bottom: 1px solid #ccc;
+}
