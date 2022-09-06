@@ -1,18 +1,22 @@
 import styles from 'styles/hero.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faReact, faVuejs, faHtml5 } from '@fortawesome/free-brands-svg-icons'
 
 type Props = {
   title: string
   subtitle?: string
-  imageOn?: boolean
+  category?: boolean
 }
 
-const Hero = ({ title, subtitle, imageOn = false }: Props) => {
+const Hero = ({ title, subtitle, category = false }: Props) => {
   return (
     <div>
       <div className={styles.text}>
-        <h1>{title}</h1>
+        <h1>
+          {category && <FontAwesomeIcon icon={title === 'Vue' ? faVuejs : title == 'React' ? faReact : faHtml5} />}
+          {title}
+        </h1>
         {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-        {imageOn && <figure> [画像] </figure>}
       </div>
     </div>
   )
