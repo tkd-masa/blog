@@ -13,7 +13,9 @@ const Hero = ({ title, subtitle, category = false }: Props) => {
     <div>
       <div className={styles.text}>
         <h1>
-          {category && <FontAwesomeIcon icon={title === 'Vue' ? faVuejs : title == 'React' ? faReact : faHtml5} />}
+          {category && (
+            <FontAwesomeIcon icon={title === 'Vue' ? faVuejs : title == 'React' ? faReact : faHtml5} size="lg" />
+          )}
           {title}
         </h1>
         {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
