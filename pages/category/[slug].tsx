@@ -21,7 +21,7 @@ const Category = ({ posts, name }: Props) => {
   return (
     <Container>
       <Meta pageTitle={name} pageDesc={`${name}に関する記事`} />
-      <Hero title={name} subtitle={`${name}に関する記事`} />
+      <Hero title={name} subtitle={`${name}に関する記事`} category />
       <Posts posts={posts} />
     </Container>
   )
