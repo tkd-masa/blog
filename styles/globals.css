@@ -63,4 +63,5 @@ main {
 
 pre code {
   border-radius: 10px;
+  font-family: "Courier New", Consolas, monospace;
 }
