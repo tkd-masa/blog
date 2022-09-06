@@ -2,6 +2,10 @@
   padding-bottom: var(--space-m);
 }
 
+.text svg {
+  margin-right: 10px;
+}
+
 .subtitle {
   font-size: var(--small-heading);
 }
