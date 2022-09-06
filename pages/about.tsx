@@ -3,11 +3,26 @@ import Profile from 'components/profile'
 import Container from 'components/container'
 import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-column'
 import PostBody from 'components/post-body'
-import ContentsList from 'components/contentsList'
+import TableOfContents from 'components/tableOfContents'
 import Meta from 'components/meta'
 import eyecatch from 'images/about.jpg'
 
 const About = () => {
+  // TableOfContentsのprops
+  const toc = [
+    {
+      id: 'about_blog',
+      text: 'このブログについて',
+    },
+    {
+      id: 'reason',
+      text: 'ブログを作成した理由',
+    },
+    {
+      id: 'purpose',
+      text: 'ブログの目的',
+    },
+  ]
   return (
     <Container large>
       <Meta
@@ -22,14 +37,13 @@ const About = () => {
           <Container>
             <Hero title="ABOUT" subtitle="このブログについて" />
             <PostBody>
-              <ContentsList contentsLists={['このブログについて', 'ブログを作成した理由', 'ブログの目的']} />
-
-              <h2>このブログについて</h2>
+              <TableOfContents toc={toc} />
+              <h2 id="about_blog">このブログについて</h2>
               <p>
                 初めまして、このブログを作成したTakeといいます。このブログは私が日々フロントエンドの技術について、勉強した際につまづいたポイントを記事にして共有するためのブログです。自分と同じ個所でつまづいた人たちにとって助けとなる記事をこれから少しずつ投稿していきます。
               </p>
 
-              <h2>このブログを作成した理由</h2>
+              <h2 id="reason">このブログを作成した理由</h2>
               <p>このブログを作成した理由2つあります。</p>
               <p>
                 1つ目はblogページを作成することreact/next.jsのアウトプットを図りたかったためです。現在フロントエンドエンジニアになるために勉強しながら就職活動中なのでこのブログを作成することで技術力のアピールができると考えました。
@@ -38,7 +52,7 @@ const About = () => {
                 2つ目は、自分が学んだことを、備忘録として残しておきたかったためです。せっかく学んだことでも時間がたつと忘れてしまうので、react/next.jsのアウトプットを機会にこのブログに、適宜記事を書いていこうと思います。
               </p>
 
-              <h2>ブログの目的</h2>
+              <h2 id="purpose">ブログの目的</h2>
               <p>このブログの目的は以下の3つです。</p>
               <ol>
                 <li>フロントエンドの勉強で学んだことを発信する。</li>
