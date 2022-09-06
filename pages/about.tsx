@@ -5,7 +5,6 @@ import { TwoColumn, TwoColumnMain, TwoColumnSidebar } from 'components/two-colum
 import PostBody from 'components/post-body'
 import TableOfContents from 'components/tableOfContents'
 import Meta from 'components/meta'
-import eyecatch from 'images/about.jpg'
 
 const About = () => {
   // TableOfContentsのprops
@@ -28,9 +27,6 @@ const About = () => {
       <Meta
         pageTitle="ABOUT"
         pageDesc="TakeLogについての詳細ページ"
-        pageImg={eyecatch.src}
-        pageImgW={eyecatch.width}
-        pageImgH={eyecatch.height}
       />
       <TwoColumn>
         <TwoColumnMain>
