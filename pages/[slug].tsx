@@ -11,6 +11,8 @@ import { getPlaiceholder } from 'plaiceholder'
 import { prevNextPost } from 'lib/prev-next-post'
 import Pagination from 'components/pagination'
 import cheerio from 'cheerio'
+import { renderToc } from 'lib/render-toc'
+import TableOfContents from 'components/tableOfContents'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/tomorrow-night-blue.css'
 
@@ -27,6 +29,11 @@ type Props = {
     blurDataURL: string
   }
   content: string
+  toc: {
+    text: string | undefined
+    id: string
+  }[]
+  toc_visible: boolean
   description: string
   prevPost: {
     title: string
@@ -68,6 +75,7 @@ const Post = (props: Props) => {
             />
           </figure>
           <PostBody>
+            {props.toc_visible && <TableOfContents toc={props.toc} />}
             <ConvertBody contentHTML={props.content} />
           </PostBody>
           <Pagination
@@ -107,6 +115,9 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     $(element).addClass('hljs')
   })
 
+  //目次のリストを取得
+  const toc = renderToc(post.content)
+
   const description = extractText(post.content)
 
   const eyecatch = post.eyecatch ?? eyecatchLocal
@@ -124,6 +135,8 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
       publish: post.publishDate,
       eyecatch: eyecatch,
       content: $('body').html() ?? post.content,
+      toc: toc,
+      toc_visible: post.toc_visible,
       description: description,
       prevPost: prevPost,
       nextPost: nextPost,
