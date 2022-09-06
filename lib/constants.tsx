@@ -9,7 +9,7 @@ export const siteMeta = {
 }
 
 export const eyecatchLocal = {
-  url:'https://images.microcms-assets.io/assets/6c9bebd79a7b4ab4acd16979e24f5db0/45cb217373714c7bbc3f409fe70ce7b7/eyecatchLocal.jpg',
+  url: 'https://images.microcms-assets.io/assets/6c9bebd79a7b4ab4acd16979e24f5db0/45cb217373714c7bbc3f409fe70ce7b7/eyecatchLocal.jpg',
   width: 1360,
-  height: 743
+  height: 743,
 }

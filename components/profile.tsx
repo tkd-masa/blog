@@ -5,7 +5,7 @@ const icon = {
   src: 'https://images.microcms-assets.io/assets/6c9bebd79a7b4ab4acd16979e24f5db0/e14dec1bc8254401a6fd850d9785b24c/icon.jpg',
   width: 360,
   height: 360,
-  blurDataURL: 'data:image/jpeg;base64'
+  blurDataURL: 'data:image/jpeg;base64',
 }
 
 const profile = () => {
@@ -13,7 +13,14 @@ const profile = () => {
     <div className={styles.profile}>
       <h2>Profile</h2>
       <div className={styles.icon}>
-        <Image src={icon.src} alt="アイコン画像" layout="responsive" width={icon.width} height={icon.height} blurDataURL={icon.blurDataURL} />
+        <Image
+          src={icon.src}
+          alt="アイコン画像"
+          layout="responsive"
+          width={icon.width}
+          height={icon.height}
+          blurDataURL={icon.blurDataURL}
+        />
       </div>
       <div className={styles.myName}>Take</div>
       <p>

@@ -24,10 +24,7 @@ const About = () => {
   ]
   return (
     <Container large>
-      <Meta
-        pageTitle="ABOUT"
-        pageDesc="TakeLogについての詳細ページ"
-      />
+      <Meta pageTitle="ABOUT" pageDesc="TakeLogについての詳細ページ" />
       <TwoColumn>
         <TwoColumnMain>
           <Container>
