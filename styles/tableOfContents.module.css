@@ -20,3 +20,7 @@
   list-style-position: inside;
   border-bottom: 1px solid var(--gray-80);
 }
+
+.toc + p {
+  margin-top: var(--space-s);
+}
