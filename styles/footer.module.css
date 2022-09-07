@@ -7,7 +7,7 @@
   composes: sideBySideCenter from 'styles/utils.module.css';
 }
 
-@media (min-width: 768px) {
+@media (min-width: 960px) {
   .flexContainer {
     composes: sideBySide from 'styles/utils.module.css';
   }

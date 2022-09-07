@@ -1,5 +1,5 @@
 /* デスクトップ */
-@media (min-width: 768px) {
+@media (min-width: 960px) {
   .btn {
     display: none;
   }
@@ -11,7 +11,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 959px) {
   /* ハンバーガーメニューのボタン */
   .btn {
     all: unset;
@@ -76,13 +76,15 @@
     z-index: 100;
     color: var(--white);
     background-color: var(--light-blue);
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
     transition: transform 0.4s;
     /*配置*/
     display: grid;
-    gap: 40px;
+    gap: var(--space-m);
     place-content: center;
     text-align: center;
-    font-size: 1.8rem;
   }
 
   .close .list {

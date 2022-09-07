@@ -9,7 +9,7 @@
   padding-bottom: var(--space-m);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 960px) {
   .main {
     /* width: 842px; */
     width: 65.78125%; /* 842/1280 */
