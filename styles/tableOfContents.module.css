@@ -1,5 +1,5 @@
 .toc {
-  border: 1px solid #ccc;
+  border: 1px solid var(--gray-80);
   margin: 0 auto;
   padding: 0 40px var(--space-s);
   border-radius: 5px;
@@ -18,5 +18,5 @@
   padding: var(--space-xs) 0;
   list-style: revert;
   list-style-position: inside;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--gray-80);
 }
