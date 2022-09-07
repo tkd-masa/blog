@@ -9,6 +9,7 @@ html {
   --light-blue: #b0deec;
   --gray-25: #aaa;
   --gray-50: #707070;
+  --gray-80: #ccc;
 
   /* タイポグラフィ(フォントサイズ) */
   --body: clamp(1.4rem, 1.327rem + 0.36vw, 1.6rem); /* 14-16px */
