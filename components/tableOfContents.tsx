@@ -7,7 +7,7 @@ type Props = {
   toc: {
     text: string | undefined
     id: string
-    name: string
+    name?: string
   }[]
 }
 
