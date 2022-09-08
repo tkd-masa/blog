@@ -8,6 +8,8 @@ export const renderToc = (body: string | Buffer) => {
     text: data.children[0].data,
     //@ts-ignore
     id: data.attribs.id,
+    //@ts-ignore
+    name: data.name,
   }))
 
   return toc

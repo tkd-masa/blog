@@ -10,17 +10,26 @@
   font-weight: 700;
 }
 
+.toc + p {
+  margin-top: var(--space-s);
+}
+
 .toc svg {
   margin-right: 7px;
 }
 
-.toc li {
+.list {
   padding: var(--space-xs) 0;
-  list-style: revert;
   list-style-position: inside;
   border-bottom: 1px solid var(--gray-80);
 }
 
-.toc + p {
-  margin-top: var(--space-s);
+.list::before {
+  content: '-';
+  color: var(--light-blue);
+  margin-right: 10px;
+}
+
+.list.h3 {
+  margin-left: 20px;
 }
