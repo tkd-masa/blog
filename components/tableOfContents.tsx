@@ -7,6 +7,7 @@ type Props = {
   toc: {
     text: string | undefined
     id: string
+    name?: string
   }[]
 }
 
@@ -17,15 +18,15 @@ const tableOfContents = ({ toc }: Props) => {
         <FontAwesomeIcon icon={faBookOpen} />
         目次
       </p>
-      <ol>
+      <ul>
         {toc.map((data) => (
-          <li key={data.id}>
+          <li key={data.id} className={data.name === 'h3' ? `${styles.list} ${styles[data.name]}` : styles.list}>
             <Scroll to={`${data.id}`} smooth={true} duration={700} offset={-120}>
               {data.text}
             </Scroll>
           </li>
         ))}
-      </ol>
+      </ul>
     </div>
   )
 }
