@@ -1,7 +1,7 @@
 import type { GetStaticProps } from 'next'
 import Container from 'components/container'
 import PostHeader from 'components/post-header'
-import { getPostBySlug, getAllSlugs } from 'lib/api'
+import { getPostBySlug, getAllSlugs, getAllPostsByCategory } from 'lib/api'
 import Image from 'next/image'
 import PostBody from 'components/post-body'
 import ConvertBody from 'components/convert-body'
@@ -127,7 +127,8 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const { base64 } = await getPlaiceholder(eyecatch.url)
   eyecatch.blurDataURL = base64
 
-  const allSlugs = await getAllSlugs()
+  //ページネーションの値を取得
+  const allSlugs = await getAllPostsByCategory(post.categories)
 
   const [prevPost, nextPost] = prevNextPost(allSlugs, slug)
 
