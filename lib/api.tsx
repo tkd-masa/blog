@@ -31,6 +31,24 @@ export const getAllSlugs = async (limit = 100) => {
   }
 }
 
+export const getPostsById = async (id: number, PER_PAGE: number) => {
+  try {
+    const posts = await client.get({
+      endpoint: 'blogs',
+      queries: {
+        fields: 'title,slug,eyecatch,publishDate,categories',
+        orders: '--publishDate',
+        offset: (id - 1) * PER_PAGE,
+        limit: PER_PAGE,
+      },
+    })
+    return posts.content
+  } catch (err) {
+    console.log('~~ getPostsById ~~')
+    console.log(err)
+  }
+}
+
 export const getAllPosts = async (limit = 100) => {
   try {
     const posts = await client.get({
