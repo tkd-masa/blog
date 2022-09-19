@@ -24,8 +24,8 @@ type Props = {
 const pageId = ({ posts, totalCount, id }: Props) => {
   return (
     <Container>
-      <Meta pageTitle="HOME" pageDesc="ブログの記事一覧" />
-      <Hero title="HOME" subtitle="ホーム" />
+      <Meta pageTitle="Blog" pageDesc="ブログの記事一覧" />
+      <Hero title="Blog" subtitle="ブログの記事一覧" />
       <Posts posts={posts} />
       <Pagination totalCount={totalCount} perPage={perPage} currentPage={id} />
     </Container>
