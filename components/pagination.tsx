@@ -5,7 +5,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 
 export const PaginationBySlug = ({ prevText = '', prevUrl = '', nextText = '', nextUrl = '' }) => {
   return (
-    <ul className={`${styles.flexContainer} ${styles.slug}`}>
+    <ul className={styles.flexContainer}>
       {prevText && prevUrl && (
         <li className={styles.prev}>
           <Link href={prevUrl}>
