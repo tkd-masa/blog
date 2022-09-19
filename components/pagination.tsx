@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
-const Pagination = ({ prevText = '', prevUrl = '', nextText = '', nextUrl = '' }) => {
+export const PaginationBySlug = ({ prevText = '', prevUrl = '', nextText = '', nextUrl = '' }) => {
   return (
     <ul className={styles.flexContainer}>
       {prevText && prevUrl && (
@@ -30,4 +30,44 @@ const Pagination = ({ prevText = '', prevUrl = '', nextText = '', nextUrl = '' }
   )
 }
 
-export default Pagination
+export const PaginationById = ({
+  totalCount,
+  perPage,
+  currentPage,
+}: {
+  totalCount: number
+  perPage: number
+  currentPage: number
+}) => {
+  const range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i)
+  const totalPageCount = Math.ceil(totalCount / perPage)
+  return (
+    <ul className={`${styles.flexContainer} ${styles.id}`}>
+      {currentPage > 1 && (
+        <li>
+          <Link href={`/page/${currentPage - 1}`}>
+            <a>
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </a>
+          </Link>
+        </li>
+      )}
+      {range(1, Math.ceil(totalCount / perPage)).map((number, index) => (
+        <li key={index} className={number === currentPage ? `${styles.list} ${styles.active}` : styles.list}>
+          <Link href={`/page/${number}`}>
+            <a>{number}</a>
+          </Link>
+        </li>
+      ))}
+      {currentPage != totalPageCount && (
+        <li>
+          <Link href={`/page/${currentPage + 1}`}>
+            <a>
+              <FontAwesomeIcon icon={faChevronRight} />
+            </a>
+          </Link>
+        </li>
+      )}
+    </ul>
+  )
+}
