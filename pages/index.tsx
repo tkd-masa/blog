@@ -6,6 +6,7 @@ import Posts from 'components/posts'
 import { getAllPosts } from 'lib/api'
 import { eyecatchLocal } from 'lib/constants'
 import { getPlaiceholder } from 'plaiceholder'
+import { PaginationBySlug as Pagination } from 'components/pagination'
 
 type Props = {
   posts: {
@@ -19,9 +20,13 @@ type Props = {
 const Home: NextPage<Props> = ({ posts }: Props) => {
   return (
     <Container>
-      <Meta pageTitle="HOME" pageDesc="ブログの記事一覧" />
+      <Meta
+        pageTitle="HOME"
+        pageDesc="私が日々フロントエンドの技術について、勉強した際につまづいたポイントを記事にして共有するためのブログです。"
+      />
       <Hero title="HOME" subtitle="ホーム" />
       <Posts posts={posts} />
+      <Pagination nextUrl="/page/1" nextText="ブログの記事一覧" />
     </Container>
   )
 }
