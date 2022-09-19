@@ -42,7 +42,7 @@ export const getPostsById = async (id: number, PER_PAGE: number) => {
         limit: PER_PAGE,
       },
     })
-    return posts.content
+    return posts
   } catch (err) {
     console.log('~~ getPostsById ~~')
     console.log(err)

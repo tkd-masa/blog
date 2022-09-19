@@ -8,7 +8,7 @@ import { getAllPosts, getPostsById } from 'lib/api'
 import type { GetStaticProps } from 'next'
 import { PaginationById as Pagination } from 'components/pagination'
 
-const PER_PAGE = 6
+const perPage = 6
 
 type Props = {
   posts: {
@@ -17,16 +17,17 @@ type Props = {
     eyecatch: { url: string; width: number; height: number; blurDataURL: string }
     categories: string[]
   }[]
+  id: number
   totalCount: number
 }
 
-const pageId = ({ posts, totalCount }: Props) => {
+const pageId = ({ posts, totalCount, id }: Props) => {
   return (
     <Container>
       <Meta pageTitle="HOME" pageDesc="ブログの記事一覧" />
       <Hero title="HOME" subtitle="ホーム" />
       <Posts posts={posts} />
-      <Pagination totalCount={totalCount} PER_PAGE={PER_PAGE} />
+      <Pagination totalCount={totalCount} perPage={perPage} currentPage={id} />
     </Container>
   )
 }
@@ -40,15 +41,15 @@ export const getStaticPaths = async () => {
 
   const range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i)
 
-  const paths = range(1, Math.ceil(repos.length / PER_PAGE)).map((repo) => `/page/${repo}`)
+  const paths = range(1, Math.ceil(repos.length / perPage)).map((repo) => `/page/${repo}`)
 
   return { paths, fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = Number(context.params?.id)
-  const posts = await getPostsById(id, PER_PAGE)
-  for (const post of posts) {
+  const posts = await getPostsById(id, perPage)
+  for (const post of posts.contents) {
     if (!post.hasOwnProperty('eyecatch')) {
       post.eyecatch = eyecatchLocal
     }
@@ -58,8 +59,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      posts: posts,
-      totalCount: posts.length,
+      id: id,
+      posts: posts.contents,
+      totalCount: posts.totalCount,
     },
   }
 }
