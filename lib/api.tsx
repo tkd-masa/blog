@@ -32,7 +32,7 @@ export const getAllSlugs = async (limit = 100) => {
   }
 }
 
-export const getPostsById = async (id: number, PER_PAGE: number) => {
+export const getAllPostsById = async (id: number, PER_PAGE: number) => {
   try {
     const posts = await client.get({
       endpoint: 'blogs',
