@@ -1,4 +1,4 @@
-import { getAllCategories, getAllPostsByCategory } from 'lib/api'
+import { getAllCategories, getAllPostsByCategoryAndId } from 'lib/api'
 import Meta from 'components/meta'
 import Container from 'components/container'
 import Hero from 'components/hero'
@@ -6,9 +6,13 @@ import Posts from 'components/posts'
 import type { GetStaticProps } from 'next'
 import { eyecatchLocal } from 'lib/constants'
 import { getPlaiceholder } from 'plaiceholder'
+import { PaginationById as Pagination } from 'components/pagination'
+import { perPage } from 'lib/constants'
 
 type Props = {
+  id: number
   name: string
+  totalCount: number
   posts: {
     title: string
     slug: string
@@ -17,12 +21,13 @@ type Props = {
   }[]
 }
 
-const Category = ({ posts, name }: Props) => {
+const Category = ({ posts, id, name, totalCount }: Props) => {
   return (
     <Container>
       <Meta pageTitle={name} pageDesc={`${name}に関する記事`} />
       <Hero title={name} subtitle={`${name}に関する記事`} category />
       <Posts posts={posts} />
+      <Pagination totalCount={totalCount} perPage={perPage} currentPage={id} cat={name} />
     </Container>
   )
 }
@@ -38,11 +43,11 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  const id = 1
   const catSlug = context.params?.slug
+  const posts = await getAllPostsByCategoryAndId(catSlug, id)
 
-  const posts = await getAllPostsByCategory(catSlug)
-
-  for (const post of posts) {
+  for (const post of posts.contents) {
     if (!post.hasOwnProperty('eyecatch')) {
       post.eyecatch = eyecatchLocal
     }
@@ -52,8 +57,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      posts: posts,
+      id: id,
       name: catSlug,
+      posts: posts.contents,
+      totalCount: posts.totalCount,
     },
   }
 }
