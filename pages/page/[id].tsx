@@ -7,8 +7,8 @@ import { getPlaiceholder } from 'plaiceholder'
 import { getAllPosts, getPostsById } from 'lib/api'
 import type { GetStaticProps } from 'next'
 import { PaginationById as Pagination } from 'components/pagination'
-
-const perPage = 6
+import { range } from 'lib/range'
+import { perPage } from 'lib/constants'
 
 type Props = {
   posts: {
@@ -36,10 +36,6 @@ export default pageId
 
 export const getStaticPaths = async () => {
   const repos = await getAllPosts()
-
-  //   const pageNumbers = []
-
-  const range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i)
 
   const paths = range(1, Math.ceil(repos.length / perPage)).map((repo) => `/page/${repo}`)
 

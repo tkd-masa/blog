@@ -13,3 +13,5 @@ export const eyecatchLocal = {
   width: 1360,
   height: 743,
 }
+
+export const perPage = 6
