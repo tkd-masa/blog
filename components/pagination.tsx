@@ -43,12 +43,15 @@ export const PaginationById = ({
   cat?: string
 }) => {
   const totalPageCount = Math.ceil(totalCount / perPage)
-
+  const getPath = (p: number) => {
+    if (cat) return `/category/${cat}/page/${p}`
+    return `/page/${p}`
+  }
   return (
     <ul className={`${styles.flexContainer} ${styles.id}`}>
       {currentPage > 1 && (
         <li>
-          <Link href={cat ? `/category/${cat}/page/${currentPage - 1}` : `/page/${currentPage - 1}`}>
+          <Link href={getPath(currentPage - 1)}>
             <a>
               <FontAwesomeIcon icon={faChevronLeft} />
             </a>
@@ -57,14 +60,14 @@ export const PaginationById = ({
       )}
       {range(1, Math.ceil(totalCount / perPage)).map((number, index) => (
         <li key={index} className={number === currentPage ? `${styles.list} ${styles.active}` : styles.list}>
-          <Link href={cat ? `/category/${cat}/page/${number}` : `/page/${number}`}>
+          <Link href={getPath(number)}>
             <a>{number}</a>
           </Link>
         </li>
       ))}
       {currentPage != totalPageCount && (
         <li>
-          <Link href={cat ? `/category/${cat}/page/${currentPage + 1}` : `/page/${currentPage + 1}`}>
+          <Link href={getPath(currentPage + 1)}>
             <a>
               <FontAwesomeIcon icon={faChevronRight} />
             </a>
