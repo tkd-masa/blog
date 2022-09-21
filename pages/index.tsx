@@ -3,7 +3,7 @@ import Hero from 'components/hero'
 import Container from 'components/container'
 import Meta from 'components/meta'
 import Posts from 'components/posts'
-import { getPostsById } from 'lib/api'
+import { getAllPostsById } from 'lib/api'
 import { eyecatchLocal } from 'lib/constants'
 import { getPlaiceholder } from 'plaiceholder'
 import { PaginationById as Pagination } from 'components/pagination'
@@ -27,7 +27,7 @@ const Home: NextPage<Props> = ({ posts, totalCount, id }: Props) => {
         pageTitle="HOME"
         pageDesc="私が日々フロントエンドの技術について、勉強した際につまづいたポイントを記事にして共有するためのブログです。"
       />
-      <Hero title="HOME" subtitle="ホーム" />
+      <Hero title="HOME" subtitle="ブログの記事一覧" />
       <Posts posts={posts} />
       <Pagination totalCount={totalCount} perPage={perPage} currentPage={id} />
     </Container>
@@ -38,7 +38,7 @@ export default Home
 
 export const getStaticProps: GetStaticProps = async () => {
   const id = 1
-  const posts = await getPostsById(id, perPage)
+  const posts = await getAllPostsById(id, perPage)
   for (const post of posts.contents) {
     if (!post.hasOwnProperty('eyecatch')) {
       post.eyecatch = eyecatchLocal
