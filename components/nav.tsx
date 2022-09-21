@@ -41,17 +41,17 @@ const Nav = () => {
           </Link>
         </li>
         <li>
-          <Link href="/category/HTML_CSS">
+          <Link href="/category/HTML_CSS/page/1">
             <a onClick={closeNav}>HTML_CSS</a>
           </Link>
         </li>
         <li>
-          <Link href="/category/Vue">
+          <Link href="/category/Vue/page/1">
             <a onClick={closeNav}>Vue.js</a>
           </Link>
         </li>
         <li>
-          <Link href="/category/React">
+          <Link href="/category/React/page/1">
             <a onClick={closeNav}>React</a>
           </Link>
         </li>
