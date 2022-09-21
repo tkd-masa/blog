@@ -12,7 +12,7 @@ import { PaginationById as Pagination } from 'components/pagination'
 
 type Props = {
   id: number
-  cat: string
+  name: string
   totalCount: number
   posts: {
     title: string
@@ -22,13 +22,13 @@ type Props = {
   }[]
 }
 
-const Category = ({ posts, id, cat, totalCount }: Props) => {
+const Category = ({ posts, id, name, totalCount }: Props) => {
   return (
     <Container>
-      <Meta pageTitle={cat} pageDesc={`${cat}に関する記事`} />
-      <Hero title={cat} subtitle={`${cat}に関する記事`} category />
+      <Meta pageTitle={name} pageDesc={`${name}に関する記事`} />
+      <Hero title={name} subtitle={`${name}に関する記事`} category />
       <Posts posts={posts} />
-      <Pagination totalCount={totalCount} perPage={perPage} currentPage={id} cat={cat} />
+      <Pagination totalCount={totalCount} perPage={perPage} currentPage={id} cat={name} />
     </Container>
   )
 }
@@ -38,6 +38,7 @@ export default Category
 export const getStaticPaths = async () => {
   const allCats = await getAllCategories()
   let paths: string[] = new Array()
+
   for (const cat of allCats) {
     const repos = await getAllPostsByCategory(cat.name)
     paths = paths.concat(
@@ -50,8 +51,9 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = Number(context.params?.id)
-  const cat = context.params?.slug
-  const posts = await getAllPostsByCategoryAndId(cat, id)
+  const catSlug = context.params?.slug
+  const posts = await getAllPostsByCategoryAndId(catSlug, id)
+
   for (const post of posts.contents) {
     if (!post.hasOwnProperty('eyecatch')) {
       post.eyecatch = eyecatchLocal
@@ -63,7 +65,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       id: id,
-      cat: cat,
+      name: catSlug,
       posts: posts.contents,
       totalCount: posts.totalCount,
     },
