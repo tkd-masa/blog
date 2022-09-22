@@ -83,12 +83,28 @@ export const getAllCategories = async (limit = 100) => {
   }
 }
 
-export const getAllPostsByCategory = async (catID: string | string[] | undefined, limit = 100) => {
+export const getCategoryName = async (catslug: string) => {
+  try {
+    const catName = await client.get({
+      endpoint: 'categories',
+      queries: {
+        fields: 'name',
+        filters: `slug[equals]${catslug}`,
+      },
+    })
+    return catName.contents[0].name
+  } catch (err) {
+    console.log('!-- getCategoryName --')
+    console.log(err)
+  }
+}
+
+export const getAllPostsByCategory = async (catName: string | string[] | undefined, limit = 100) => {
   try {
     const posts = await client.get({
       endpoint: 'blogs',
       queries: {
-        filters: `categories[contains]${catID}`,
+        filters: `categories[contains]${catName}`,
         orders: '-publishDate',
         limit: limit,
       },
@@ -100,12 +116,12 @@ export const getAllPostsByCategory = async (catID: string | string[] | undefined
   }
 }
 
-export const getAllPostsByCategoryAndId = async (catID: string | string[] | undefined, id: number) => {
+export const getAllPostsByCategoryAndId = async (catName: string | string[] | undefined, id: number) => {
   try {
     const posts = await client.get({
       endpoint: 'blogs',
       queries: {
-        filters: `categories[contains]${catID}`,
+        filters: `categories[contains]${catName}`,
         orders: '-publishDate',
         offset: (id - 1) * perPage,
         limit: perPage,
@@ -113,7 +129,7 @@ export const getAllPostsByCategoryAndId = async (catID: string | string[] | unde
     })
     return posts
   } catch (err) {
-    console.log('~~ getAllPostsByCategory ~~')
+    console.log('~~ getAllPostsByCategoryAndId ~~')
     console.log(err)
   }
 }
