@@ -50,7 +50,7 @@ export const PaginationById = ({
   return (
     <ul className={`${styles.flexContainer} ${styles.id}`}>
       {currentPage > 1 && (
-        <li>
+        <li className={styles.page}>
           <Link href={getPath(currentPage - 1)}>
             <a>
               <FontAwesomeIcon icon={faChevronLeft} />
@@ -59,14 +59,14 @@ export const PaginationById = ({
         </li>
       )}
       {range(1, Math.ceil(totalCount / perPage)).map((number, index) => (
-        <li key={index} className={number === currentPage ? `${styles.list} ${styles.active}` : styles.list}>
+        <li key={index} className={number === currentPage ? `${styles.page} ${styles.active}` : styles.page}>
           <Link href={getPath(number)}>
             <a>{number}</a>
           </Link>
         </li>
       ))}
       {currentPage != totalPageCount && (
-        <li>
+        <li className={styles.page}>
           <Link href={getPath(currentPage + 1)}>
             <a>
               <FontAwesomeIcon icon={faChevronRight} />
