@@ -35,16 +35,16 @@ export const PaginationById = ({
   totalCount,
   perPage,
   currentPage,
-  cat,
+  catSlug,
 }: {
   totalCount: number
   perPage: number
   currentPage: number
-  cat?: string
+  catSlug?: string
 }) => {
   const totalPageCount = Math.ceil(totalCount / perPage)
   const getPath = (p: number) => {
-    if (cat) return `/category/${cat}/page/${p}`
+    if (catSlug) return `/category/${catSlug}/page/${p}`
     return `/page/${p}`
   }
   return (
