@@ -1,4 +1,4 @@
-import { getAllCategories, getAllPostsByCategory, getAllPostsByCategoryAndId } from 'lib/api'
+import { getAllCategories, getAllPostsByCategory, getAllPostsByCategoryAndId, getCategoryName } from 'lib/api'
 import Meta from 'components/meta'
 import Container from 'components/container'
 import Hero from 'components/hero'
@@ -12,7 +12,8 @@ import { PaginationById as Pagination } from 'components/pagination'
 
 type Props = {
   id: number
-  name: string
+  catName: string
+  catSlug: string
   totalCount: number
   posts: {
     title: string
@@ -22,13 +23,13 @@ type Props = {
   }[]
 }
 
-const Category = ({ posts, id, name, totalCount }: Props) => {
+const Category = ({ posts, id, catName, catSlug, totalCount }: Props) => {
   return (
     <Container>
-      <Meta pageTitle={name} pageDesc={`${name}に関する記事`} />
-      <Hero title={name} subtitle={`${name}に関する記事`} category />
+      <Meta pageTitle={catName} pageDesc={`${catName}に関する記事`} />
+      <Hero title={catName} subtitle={`${catName}に関する記事`} category />
       <Posts posts={posts} />
-      <Pagination totalCount={totalCount} perPage={perPage} currentPage={id} cat={name} />
+      <Pagination totalCount={totalCount} perPage={perPage} currentPage={id} catSlug={catSlug} />
     </Container>
   )
 }
@@ -42,7 +43,7 @@ export const getStaticPaths = async () => {
   for (const cat of allCats) {
     const repos = await getAllPostsByCategory(cat.name)
     paths = paths.concat(
-      range(1, Math.ceil(repos.length / perPage)).map((repo) => `/category/${cat.name}/page/${repo}`)
+      range(1, Math.ceil(repos.length / perPage)).map((repo) => `/category/${cat.slug}/page/${repo}`)
     )
   }
 
@@ -51,8 +52,9 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = Number(context.params?.id)
-  const catSlug = context.params?.slug
-  const posts = await getAllPostsByCategoryAndId(catSlug, id)
+  const catSlug = context.params?.slug as string
+  const catName = await getCategoryName(catSlug)
+  const posts = await getAllPostsByCategoryAndId(catName, id)
 
   for (const post of posts.contents) {
     if (!post.hasOwnProperty('eyecatch')) {
@@ -65,7 +67,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       id: id,
-      name: catSlug,
+      catSlug: catSlug,
+      catName: catName,
       posts: posts.contents,
       totalCount: posts.totalCount,
     },
