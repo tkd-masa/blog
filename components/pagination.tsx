@@ -1,5 +1,6 @@
 import styles from 'styles/pagination.module.css'
 import Link from 'next/link'
+import { range } from 'lib/range'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
@@ -34,18 +35,23 @@ export const PaginationById = ({
   totalCount,
   perPage,
   currentPage,
+  cat,
 }: {
   totalCount: number
   perPage: number
   currentPage: number
+  cat?: string
 }) => {
-  const range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i)
   const totalPageCount = Math.ceil(totalCount / perPage)
+  const getPath = (p: number) => {
+    if (cat) return `/category/${cat}/page/${p}`
+    return `/page/${p}`
+  }
   return (
     <ul className={`${styles.flexContainer} ${styles.id}`}>
       {currentPage > 1 && (
-        <li>
-          <Link href={`/page/${currentPage - 1}`}>
+        <li className={styles.page}>
+          <Link href={getPath(currentPage - 1)}>
             <a>
               <FontAwesomeIcon icon={faChevronLeft} />
             </a>
@@ -53,15 +59,15 @@ export const PaginationById = ({
         </li>
       )}
       {range(1, Math.ceil(totalCount / perPage)).map((number, index) => (
-        <li key={index} className={number === currentPage ? `${styles.list} ${styles.active}` : styles.list}>
-          <Link href={`/page/${number}`}>
+        <li key={index} className={number === currentPage ? `${styles.page} ${styles.active}` : styles.page}>
+          <Link href={getPath(number)}>
             <a>{number}</a>
           </Link>
         </li>
       ))}
       {currentPage != totalPageCount && (
-        <li>
-          <Link href={`/page/${currentPage + 1}`}>
+        <li className={styles.page}>
+          <Link href={getPath(currentPage + 1)}>
             <a>
               <FontAwesomeIcon icon={faChevronRight} />
             </a>

@@ -1,4 +1,4 @@
-import { getAllCategories, getAllPostsByCategoryAndId } from 'lib/api'
+import { getAllCategories, getAllPostsByCategory, getAllPostsByCategoryAndId } from 'lib/api'
 import Meta from 'components/meta'
 import Container from 'components/container'
 import Hero from 'components/hero'
@@ -6,8 +6,9 @@ import Posts from 'components/posts'
 import type { GetStaticProps } from 'next'
 import { eyecatchLocal } from 'lib/constants'
 import { getPlaiceholder } from 'plaiceholder'
-import { PaginationById as Pagination } from 'components/pagination'
+import { range } from 'lib/range'
 import { perPage } from 'lib/constants'
+import { PaginationById as Pagination } from 'components/pagination'
 
 type Props = {
   id: number
@@ -36,14 +37,20 @@ export default Category
 
 export const getStaticPaths = async () => {
   const allCats = await getAllCategories()
-  return {
-    paths: allCats.map(({ slug }: { slug: string }) => `/category/${slug}`),
-    fallback: false,
+  let paths: string[] = new Array()
+
+  for (const cat of allCats) {
+    const repos = await getAllPostsByCategory(cat.name)
+    paths = paths.concat(
+      range(1, Math.ceil(repos.length / perPage)).map((repo) => `/category/${cat.name}/page/${repo}`)
+    )
   }
+
+  return { paths, fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const id = 1
+  const id = Number(context.params?.id)
   const catSlug = context.params?.slug
   const posts = await getAllPostsByCategoryAndId(catSlug, id)
 

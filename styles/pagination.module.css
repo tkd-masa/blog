@@ -19,15 +19,21 @@
   gap: inherit;
 }
 
-.list {
+.page {
   width: 40px;
   height: 40px;
   line-height: 40px;
   text-align: center;
   border-radius: 5px;
-  margin: 4px;
+  margin: 8px;
+  background-color: var(--white);
+}
+
+.page a {
+  display: block;
 }
 
 .active {
-  background-color: var(--white);
+  color: var(--white);
+  background-color: #39aacc;
 }

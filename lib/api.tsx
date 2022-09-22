@@ -1,4 +1,5 @@
 import { createClient } from 'microcms-js-sdk'
+import { perPage } from 'lib/constants'
 
 export const client = createClient({
   serviceDomain: process.env.SERVICE_DOMAIN || '',
@@ -31,7 +32,7 @@ export const getAllSlugs = async (limit = 100) => {
   }
 }
 
-export const getPostsById = async (id: number, PER_PAGE: number) => {
+export const getAllPostsById = async (id: number, PER_PAGE: number) => {
   try {
     const posts = await client.get({
       endpoint: 'blogs',
@@ -93,6 +94,24 @@ export const getAllPostsByCategory = async (catID: string | string[] | undefined
       },
     })
     return posts.contents
+  } catch (err) {
+    console.log('~~ getAllPostsByCategory ~~')
+    console.log(err)
+  }
+}
+
+export const getAllPostsByCategoryAndId = async (catID: string | string[] | undefined, id: number) => {
+  try {
+    const posts = await client.get({
+      endpoint: 'blogs',
+      queries: {
+        filters: `categories[contains]${catID}`,
+        orders: '-publishDate',
+        offset: (id - 1) * perPage,
+        limit: perPage,
+      },
+    })
+    return posts
   } catch (err) {
     console.log('~~ getAllPostsByCategory ~~')
     console.log(err)
