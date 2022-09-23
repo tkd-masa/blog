@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       id: id,
-      name: catSlug,
+      catSlug: catSlug,
       catName: catName,
       posts: posts.contents,
       totalCount: posts.totalCount,
