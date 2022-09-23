@@ -18,9 +18,10 @@
   margin-right: 7px;
 }
 
-.list {
+.toc .list {
+  margin: 0;
   padding: var(--space-xs) 0;
-  list-style-position: inside;
+  list-style: none;
   border-bottom: 1px solid var(--gray-80);
 }
 
