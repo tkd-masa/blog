@@ -20,10 +20,17 @@
 
 .stack ul,
 .stack ol {
+  /* ブラウザ標準の設定に戻す */
+  list-style: revert;
+  /* markerを枠内に入れるための設定 */
   list-style-position: inside;
 }
 
+.stack li + * {
+  margin-top: var(--space-xs);
+}
+
 .stack img {
-  border: 1px solid #000 !important;
+  border: 1px solid var(--gray-80) !important;
   border-radius: 5px;
 }
