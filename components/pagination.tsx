@@ -7,7 +7,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 export const PaginationBySlug = ({ prevText = '', prevUrl = '', nextText = '', nextUrl = '' }): JSX.Element => {
   return (
     <ul className={styles.flexContainer}>
-      {prevText !== undefined && prevUrl && (
+      {prevText !== '' && prevUrl && (
         <li className={styles.prev}>
           <Link href={prevUrl}>
             <a className={styles.iconText}>
@@ -17,7 +17,7 @@ export const PaginationBySlug = ({ prevText = '', prevUrl = '', nextText = '', n
           </Link>
         </li>
       )}
-      {nextText !== undefined && nextUrl && (
+      {nextText !== '' && nextUrl && (
         <li className={styles.next}>
           <Link href={nextUrl}>
             <a className={styles.iconText}>
