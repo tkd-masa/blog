@@ -4,10 +4,9 @@ import Container from 'components/container'
 import Meta from 'components/meta'
 import Posts from 'components/posts'
 import { getAllPostsById } from 'lib/api'
-import { eyecatchLocal , perPage } from 'lib/constants'
+import { eyecatchLocal, perPage } from 'lib/constants'
 import { getPlaiceholder } from 'plaiceholder'
 import { PaginationById as Pagination } from 'components/pagination'
-
 
 type Props = {
   posts: Array<{
@@ -40,7 +39,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const id = 1
   const posts = await getAllPostsById(id, perPage)
   for (const post of posts.contents) {
-    if (!post.hasOwnProperty('eyecatch')) {
+    if (!Object.prototype.hasOwnProperty.call(post, 'eyecatch')) {
       post.eyecatch = eyecatchLocal
     }
     const { base64 } = await getPlaiceholder(post.eyecatch.url)
