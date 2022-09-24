@@ -4,11 +4,14 @@ module.exports = {
     es2021: true,
   },
   extends: ['plugin:react/recommended', 'standard-with-typescript', 'next/core-web-vitals', 'prettier'],
-  overrides: [],
   parserOptions: {
-    ecmaVersion: 'latest',
+    parser: '@typescript-eslint/parser',
+    project: './tsconfig.json',
     sourceType: 'module',
   },
-  plugins: ['react', 'prettier'],
-  rules: { 'prettier/prettier': 'error' },
+  rules: {
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    // '@typescript-eslint/strict-boolean-expressions': 'off',
+  },
 }
