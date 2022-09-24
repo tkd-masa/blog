@@ -1,4 +1,4 @@
-import type { GetStaticProps } from 'next'
+import type { GetStaticProps, GetStaticPaths } from 'next'
 import Container from 'components/container'
 import PostHeader from 'components/post-header'
 import { getPostBySlug, getAllSlugs, getAllPostsByCategory } from 'lib/api'
@@ -29,11 +29,11 @@ type Props = {
     blurDataURL: string
   }
   content: string
-  toc: {
+  toc: Array<{
     text: string | undefined
     id: string
     name: string
-  }[]
+  }>
   toc_visible: boolean
   description: string
   tag: string[]
@@ -47,7 +47,7 @@ type Props = {
   }
 }
 
-const Post = (props: Props) => {
+const Post = (props: Props): JSX.Element => {
   return (
     <Container large>
       <Meta
@@ -94,7 +94,7 @@ const Post = (props: Props) => {
 
 export default Post
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const allSlugs = await getAllSlugs()
 
   return {
@@ -117,7 +117,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     $(element).addClass('hljs')
   })
 
-  //目次のリストを取得
+  // 目次のリストを取得
   const toc = renderToc(post.content)
 
   const description = extractText(post.content)
@@ -127,7 +127,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const { base64 } = await getPlaiceholder(eyecatch.url)
   eyecatch.blurDataURL = base64
 
-  //ページネーションの値を取得
+  // ページネーションの値を取得
   const allSlugs = await getAllPostsByCategory(post.categories)
 
   const [prevPost, nextPost] = prevNextPost(allSlugs, slug)
@@ -136,14 +136,14 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     props: {
       title: post.title,
       publish: post.publishDate,
-      eyecatch: eyecatch,
+      eyecatch,
       content: $('body').html() ?? post.content,
-      toc: toc,
+      toc,
       toc_visible: post.toc_visible,
-      description: description,
+      description,
       tag: post.categories,
-      prevPost: prevPost,
-      nextPost: nextPost,
+      prevPost,
+      nextPost,
     },
   }
 }

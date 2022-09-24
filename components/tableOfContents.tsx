@@ -4,14 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookOpen } from '@fortawesome/free-solid-svg-icons'
 
 type Props = {
-  toc: {
+  toc: Array<{
     text: string | undefined
     id: string
     name?: string
-  }[]
+  }>
 }
 
-const tableOfContents = ({ toc }: Props) => {
+const tableOfContents = ({ toc }: Props): JSX.Element => {
   return (
     <div className={styles.toc}>
       <p className={styles.tocHead}>

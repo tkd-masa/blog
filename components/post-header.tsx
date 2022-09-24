@@ -9,11 +9,11 @@ type Props = {
   publish?: string
 }
 
-const PostHeader = ({ title, tag, publish = '' }: Props) => {
+const PostHeader = ({ title, tag, publish = '' }: Props): JSX.Element => {
   return (
     <div className={styles.stack}>
       <p className={styles.tag}>{tag}</p>
-      {publish && (
+      {publish !== undefined && (
         <div className={styles.publish}>
           <FontAwesomeIcon icon={faClock} size="lg" color="var(--gray-50)" />
           <ConvertDate dateISO={publish} />

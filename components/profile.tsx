@@ -8,7 +8,7 @@ const icon = {
   blurDataURL: 'data:image/jpeg;base64',
 }
 
-const profile = () => {
+const profile = (): JSX.Element => {
   return (
     <div className={styles.profile}>
       <h2>Profile</h2>

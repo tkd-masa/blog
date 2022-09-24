@@ -6,8 +6,8 @@ type Props = {
   more: string
 }
 
-export const extractText = ({ html, length = 80, more = '...' }: Props) => {
-  const text = convert(html, {
+export const extractText = ({ html, length = 80, more = '...' }: Props): string => {
+  const text: string = convert(html, {
     selectors: [
       { selector: 'img', format: 'skip' },
       { selector: 'a', options: { ignoreHref: true } },

@@ -2,14 +2,14 @@ import { useState } from 'react'
 import Link from 'next/link'
 import styles from 'styles/nav.module.css'
 
-const Nav = () => {
+const Nav = (): JSX.Element => {
   const [navIsOpen, setNavIsOpen] = useState(false)
 
-  const toggleNav = () => {
+  const toggleNav = (): void => {
     setNavIsOpen((prev) => !prev)
   }
 
-  const closeNav = () => {
+  const closeNav = (): void => {
     setNavIsOpen(false)
   }
 

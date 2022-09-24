@@ -4,18 +4,18 @@ import Container from 'components/container'
 import Meta from 'components/meta'
 import Posts from 'components/posts'
 import { getAllPostsById } from 'lib/api'
-import { eyecatchLocal } from 'lib/constants'
+import { eyecatchLocal , perPage } from 'lib/constants'
 import { getPlaiceholder } from 'plaiceholder'
 import { PaginationById as Pagination } from 'components/pagination'
-import { perPage } from 'lib/constants'
+
 
 type Props = {
-  posts: {
+  posts: Array<{
     title: string
     slug: string
     eyecatch: { url: string; width: number; height: number; blurDataURL: string }
     categories: string[]
-  }[]
+  }>
   id: number
   totalCount: number
 }
@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      id: id,
+      id,
       posts: posts.contents,
       totalCount: posts.totalCount,
     },

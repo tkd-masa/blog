@@ -3,7 +3,7 @@ import Container from 'components/container'
 import Social from 'components/social'
 import styles from 'styles/footer.module.css'
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <footer className={styles.wrapper}>
       <Container large>

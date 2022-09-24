@@ -3,7 +3,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 import { siteMeta } from 'lib/constants'
 const { siteLang } = siteMeta
 
-const Document = () => {
+const Document = (): JSX.Element => {
   return (
     <Html lang={siteLang}>
       <Head>

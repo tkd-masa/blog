@@ -8,17 +8,17 @@ type Props = {
   category?: boolean
 }
 
-const Hero = ({ title, subtitle, category = false }: Props) => {
+const Hero = ({ title, subtitle, category = false }: Props): JSX.Element => {
   return (
     <div>
       <div className={styles.text}>
         <h1>
           {category && (
-            <FontAwesomeIcon icon={title === 'Vue' ? faVuejs : title == 'React' ? faReact : faHtml5} size="lg" />
+            <FontAwesomeIcon icon={title === 'Vue' ? faVuejs : title === 'React' ? faReact : faHtml5} size="lg" />
           )}
           {title}
         </h1>
-        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+        {subtitle !== undefined && <p className={styles.subtitle}>{subtitle}</p>}
       </div>
     </div>
   )
