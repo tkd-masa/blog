@@ -51,7 +51,7 @@ export const getAllPostsById: Api.GetAllPostsById = async (id: number, PER_PAGE:
     })
     return posts
   } catch (err) {
-    console.log('~~ getPostsById ~~')
+    console.log('~~ getAllPostsById ~~')
     console.log(err)
   }
 }
