@@ -6,7 +6,7 @@ import PostBody from 'components/post-body'
 import TableOfContents from 'components/tableOfContents'
 import Meta from 'components/meta'
 
-const About = () => {
+const About = (): JSX.Element => {
   // TableOfContentsのprops
   const toc = [
     {

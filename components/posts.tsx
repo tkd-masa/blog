@@ -6,16 +6,16 @@ import { faClock } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 type Props = {
-  posts: {
+  posts: Array<{
     title: string
     slug: string
     eyecatch: { url: string; width: number; height: number; blurDataURL: string }
     publishDate?: string
     categories: string[]
-  }[]
+  }>
 }
 
-const Posts = ({ posts }: Props) => {
+const Posts = ({ posts }: Props): JSX.Element => {
   return (
     <div className={styles.gridContainer}>
       {posts.map(
@@ -50,7 +50,7 @@ const Posts = ({ posts }: Props) => {
                 </figure>
                 <span className={styles.tag}>{categories}</span>
                 <h2>{title}</h2>
-                {publishDate && (
+                {publishDate !== undefined && (
                   <div className={styles.publish}>
                     <FontAwesomeIcon icon={faClock} size="lg" color="var(--gray-50)" />
                     <ConvertDate dateISO={publishDate} />

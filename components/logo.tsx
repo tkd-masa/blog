@@ -6,7 +6,7 @@ type Props = {
   height: number
 }
 
-const Logo = ({ height }: Props) => {
+const Logo = ({ height }: Props): JSX.Element => {
   return (
     <Link href="/">
       <a className={styles.logo}>

@@ -5,7 +5,7 @@ import Nav from 'components/nav'
 import Container from 'components/container'
 import styles from 'styles/header.module.css'
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const headerRef = useRef<HTMLHeadElement>(null)
 
   const [headerHeight, setHeaderHeight] = useState<number | undefined>(0)

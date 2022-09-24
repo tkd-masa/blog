@@ -6,8 +6,8 @@ type Props = {
   large?: boolean
 }
 
-const Container = ({ children, large }: Props) => {
-  return <div className={large ? styles.large : styles.default}>{children}</div>
+const Container = ({ children, large }: Props): JSX.Element => {
+  return <div className={large !== undefined ? styles.large : styles.default}>{children}</div>
 }
 
 export default Container

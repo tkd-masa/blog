@@ -1,12 +1,11 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+// 汎用OGP画像
+import siteImg from 'images/ogp.jpg'
 
 // サイトに関する情報
 import { siteMeta } from 'lib/constants'
 const { siteTitle, siteDesc, siteUrl, siteLocale, siteType, siteIcon } = siteMeta
-
-// 汎用OGP画像
-import siteImg from 'images/ogp.jpg'
 
 type Props = {
   pageTitle?: string
@@ -16,9 +15,9 @@ type Props = {
   pageImgH?: number
 }
 
-const Meta = ({ pageTitle, pageDesc, pageImg, pageImgW, pageImgH }: Props) => {
+const Meta = ({ pageTitle, pageDesc, pageImg, pageImgW, pageImgH }: Props): JSX.Element => {
   // ページのタイトル
-  const title = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle
+  const title = pageTitle !== undefined ? `${pageTitle} | ${siteTitle}` : siteTitle
 
   // ページの説明
   const desc = pageDesc ?? siteDesc
@@ -28,9 +27,9 @@ const Meta = ({ pageTitle, pageDesc, pageImg, pageImgW, pageImgH }: Props) => {
   const url = `${siteUrl}${router.asPath}`
 
   // OGP画像
-  const img = pageImg?.toString() || siteImg.src
-  const imgW = pageImgW?.toString() || siteImg.width.toString()
-  const imgH = pageImgH?.toString() || siteImg.height.toString()
+  const img = pageImg?.toString() ?? siteImg.src
+  const imgW = pageImgW?.toString() ?? siteImg.width.toString()
+  const imgH = pageImgH?.toString() ?? siteImg.height.toString()
   const imgUrl = img.startsWith('https') ? img : `${siteUrl}${img}`
 
   return (

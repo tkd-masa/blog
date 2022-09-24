@@ -5,7 +5,7 @@ type Props = {
   contentHTML: string
 }
 
-const ConvertBody = ({ contentHTML }: Props) => {
+const ConvertBody = ({ contentHTML }: Props): JSX.Element => {
   const contentReact = parse(contentHTML, {
     replace: (domNode) => {
       if (domNode instanceof Element && domNode.name === 'img') {

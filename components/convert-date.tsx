@@ -5,7 +5,7 @@ type Props = {
   dateISO: string
 }
 
-const ConvertDate = ({ dateISO }: Props) => {
+const ConvertDate = ({ dateISO }: Props): JSX.Element => {
   return (
     <time dateTime={dateISO}>
       {format(parseISO(dateISO), 'yyyy年MM月dd日', {

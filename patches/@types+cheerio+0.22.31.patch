@@ -1,0 +1,24 @@
+diff --git a/node_modules/@types/cheerio/index.d.ts b/node_modules/@types/cheerio/index.d.ts
+index f245f42..499c256 100644
+--- a/node_modules/@types/cheerio/index.d.ts
++++ b/node_modules/@types/cheerio/index.d.ts
+@@ -21,6 +21,9 @@ declare namespace cheerio {
+ 
+     interface TextElement {
+         type: 'text';
++        name: string;
++        attribs: { [attr: string]: string };
++        children: Element[];
+         next: Element | null;
+         prev: Element | null;
+         parent: Element;
+@@ -54,6 +57,9 @@ declare namespace cheerio {
+ 
+     interface CommentElement {
+         type: 'comment';
++        name: string;
++        attribs: { [attr: string]: string };
++        children: Element[];
+         next: Element | null;
+         prev: Element | null;
+         parent: Element;

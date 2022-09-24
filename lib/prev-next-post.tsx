@@ -1,7 +1,10 @@
 export const prevNextPost = (
-  allSlugs: { title: string; slug: string }[],
+  allSlugs: Array<{ title: string; slug: string }>,
   currentSlug: string | string[] | undefined
-) => {
+): Array<{
+  title: string
+  slug: string
+}> => {
   const numberOfPosts = allSlugs.length
 
   const index = allSlugs.findIndex(({ slug }: { slug: string }) => slug === currentSlug)
