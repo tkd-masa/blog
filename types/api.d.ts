@@ -1,21 +1,24 @@
-export type GetPostBySlug = (slug: string | string[] | undefined) => Promise<
+export type GetPostBySlug = (slug: string | string[] | undefined) => Promise<{
+  title: string
+  slug: string
+  eyecatch: {
+    url: string
+    height: number
+    width: number
+    blurDataURL: string | undefined
+  }
+  publishDate: string
+  content: string
+  categories: string[]
+  toc_visible: boolean
+}>
+
+export type GetAllSlugs = (limit: number = 100) => Promise<
   Array<{
     title: string
     slug: string
-    eyecatch: {
-      url: string
-      height: number
-      width: number
-    }
-    publishDate: string
-    categories: string[]
   }>
 >
-
-export type GetAllSlugs = (limit: number = 100) => Promise<{
-  title: string
-  slug: string
-}>
 
 export type GetAllPostsById = (
   id: number,
@@ -28,16 +31,19 @@ export type GetAllPostsById = (
       url: string
       height: number
       width: number
+      blurDataURL: string | undefined
     }
     publishDate: string
+    content: string
     categories: string[]
+    toc_visible: boolean
   }>
   totalCount: number
   offset: number
   limit: number
 }>
 
-export type GetAllPosts = (limit: number) => Promise<
+export type GetAllPosts = (limit: number = 100) => Promise<
   Array<{
     title: string
     slug: string
@@ -45,13 +51,16 @@ export type GetAllPosts = (limit: number) => Promise<
       url: string
       height: number
       width: number
+      blurDataURL: string | undefined
     }
     publishDate: string
+    content: string
     categories: string[]
+    toc_visible: boolean
   }>
 >
 
-export type GetAllCategories = (limit: number) => Promise<
+export type GetAllCategories = () => Promise<
   Array<{
     name: string
     id: string
@@ -72,8 +81,10 @@ export type GetAllPostsByCategory = (
       url: string
       height: number
       width: number
+      blurDataURL: string | undefined
     }
     publishDate: string
+    content: string
     categories: string[]
     toc_visible: boolean
   }>
@@ -90,8 +101,10 @@ export type GetAllPostsByCategoryAndId = (
       url: string
       height: number
       width: number
+      blurDataURL: string | undefined
     }
     publishDate: string
+    content: string
     categories: string[]
     toc_visible: boolean
   }>

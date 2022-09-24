@@ -1,12 +1,8 @@
 import { convert } from 'html-to-text'
 
-type Props = {
-  html: string
-  length: number
-  more: string
-}
-
-export const extractText = ({ html, length = 80, more = '...' }: Props): string => {
+export const extractText = (html: string): string => {
+  const length: number = 80
+  const more: string = '...'
   const text: string = convert(html, {
     selectors: [
       { selector: 'img', format: 'skip' },

@@ -2,6 +2,8 @@ import { createClient } from 'microcms-js-sdk'
 import { perPage } from 'lib/constants'
 import * as Api from 'types/api'
 
+const postFields: string = 'title,slug,eyecatch,publishDate,content,categories,toc_visible'
+
 export const client = createClient({
   serviceDomain: process.env.SERVICE_DOMAIN ?? '',
   apiKey: process.env.API_KEY ?? '',
@@ -11,7 +13,10 @@ export const getPostBySlug: Api.GetPostBySlug = async (slug: string | string[] |
   try {
     const post = await client.get({
       endpoint: 'blogs',
-      queries: { fields: 'title,slug,eyecatch,publishDate,categories', filters: `slug[equals]${slug}` },
+      queries: {
+        fields: postFields,
+        filters: `slug[equals]${slug}`,
+      },
     })
     return post.contents[0]
   } catch (err) {
@@ -38,7 +43,7 @@ export const getAllPostsById: Api.GetAllPostsById = async (id: number, PER_PAGE:
     const posts = await client.get({
       endpoint: 'blogs',
       queries: {
-        fields: 'title,slug,eyecatch,publishDate,categories',
+        fields: postFields,
         orders: '--publishDate',
         offset: (id - 1) * PER_PAGE,
         limit: PER_PAGE,
@@ -56,7 +61,7 @@ export const getAllPosts: Api.GetAllPosts = async (limit = 100) => {
     const posts = await client.get({
       endpoint: 'blogs',
       queries: {
-        fields: 'title,slug,eyecatch,publishDate,categories',
+        fields: postFields,
         orders: '--publishDate',
         limit,
       },
@@ -68,13 +73,12 @@ export const getAllPosts: Api.GetAllPosts = async (limit = 100) => {
   }
 }
 
-export const getAllCategories: Api.GetAllCategories = async (limit = 100) => {
+export const getAllCategories: Api.GetAllCategories = async () => {
   try {
     const categories = await client.get({
       endpoint: 'categories',
       queries: {
         fields: 'name,id,slug',
-        limit,
       },
     })
     return categories.contents
@@ -108,7 +112,7 @@ export const getAllPostsByCategory: Api.GetAllPostsByCategory = async (
     const posts = await client.get({
       endpoint: 'blogs',
       queries: {
-        fields: 'title,slug,eyecatch,publishDate,categories',
+        fields: postFields,
         filters: `categories[contains]${catName}`,
         orders: '-publishDate',
         limit,
@@ -129,7 +133,7 @@ export const getAllPostsByCategoryAndId: Api.GetAllPostsByCategoryAndId = async 
     const posts = await client.get({
       endpoint: 'blogs',
       queries: {
-        fields: 'title,slug,eyecatch,publishDate,categories',
+        fields: postFields,
         filters: `categories[contains]${catName}`,
         orders: '-publishDate',
         offset: (id - 1) * perPage,
