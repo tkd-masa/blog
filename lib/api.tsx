@@ -1,16 +1,17 @@
 import { createClient } from 'microcms-js-sdk'
 import { perPage } from 'lib/constants'
+import * as Api from 'types/api'
 
 export const client = createClient({
-  serviceDomain: process.env.SERVICE_DOMAIN || '',
-  apiKey: process.env.API_KEY || '',
+  serviceDomain: process.env.SERVICE_DOMAIN ?? '',
+  apiKey: process.env.API_KEY ?? '',
 })
 
-export const getPostBySlug = async (slug: string | string[] | undefined) => {
+export const getPostBySlug: Api.GetPostBySlug = async (slug: string | string[] | undefined) => {
   try {
     const post = await client.get({
       endpoint: 'blogs',
-      queries: { filters: `slug[equals]${slug}` },
+      queries: { fields: 'title,slug,eyecatch,publishDate,categories', filters: `slug[equals]${slug}` },
     })
     return post.contents[0]
   } catch (err) {
@@ -19,11 +20,11 @@ export const getPostBySlug = async (slug: string | string[] | undefined) => {
   }
 }
 
-export const getAllSlugs = async (limit = 100) => {
+export const getAllSlugs: Api.GetAllSlugs = async (limit = 100) => {
   try {
     const slugs = await client.get({
       endpoint: 'blogs',
-      queries: { fields: 'title,slug', orders: '-publishDate', limit: limit },
+      queries: { fields: 'title,slug', orders: '-publishDate', limit },
     })
     return slugs.contents
   } catch (err) {
@@ -32,7 +33,7 @@ export const getAllSlugs = async (limit = 100) => {
   }
 }
 
-export const getAllPostsById = async (id: number, PER_PAGE: number) => {
+export const getAllPostsById: Api.GetAllPostsById = async (id: number, PER_PAGE: number) => {
   try {
     const posts = await client.get({
       endpoint: 'blogs',
@@ -50,14 +51,14 @@ export const getAllPostsById = async (id: number, PER_PAGE: number) => {
   }
 }
 
-export const getAllPosts = async (limit = 100) => {
+export const getAllPosts: Api.GetAllPosts = async (limit = 100) => {
   try {
     const posts = await client.get({
       endpoint: 'blogs',
       queries: {
         fields: 'title,slug,eyecatch,publishDate,categories',
         orders: '--publishDate',
-        limit: limit,
+        limit,
       },
     })
     return posts.contents
@@ -67,13 +68,13 @@ export const getAllPosts = async (limit = 100) => {
   }
 }
 
-export const getAllCategories = async (limit = 100) => {
+export const getAllCategories: Api.GetAllCategories = async (limit = 100) => {
   try {
     const categories = await client.get({
       endpoint: 'categories',
       queries: {
         fields: 'name,id,slug',
-        limit: limit,
+        limit,
       },
     })
     return categories.contents
@@ -83,7 +84,7 @@ export const getAllCategories = async (limit = 100) => {
   }
 }
 
-export const getCategoryName = async (catslug: string) => {
+export const getCategoryName: Api.GetCategoryName = async (catslug: string) => {
   try {
     const catName = await client.get({
       endpoint: 'categories',
@@ -99,14 +100,18 @@ export const getCategoryName = async (catslug: string) => {
   }
 }
 
-export const getAllPostsByCategory = async (catName: string | string[] | undefined, limit = 100) => {
+export const getAllPostsByCategory: Api.GetAllPostsByCategory = async (
+  catName: string | string[] | undefined,
+  limit = 100
+) => {
   try {
     const posts = await client.get({
       endpoint: 'blogs',
       queries: {
+        fields: 'title,slug,eyecatch,publishDate,categories',
         filters: `categories[contains]${catName}`,
         orders: '-publishDate',
-        limit: limit,
+        limit,
       },
     })
     return posts.contents
@@ -116,11 +121,15 @@ export const getAllPostsByCategory = async (catName: string | string[] | undefin
   }
 }
 
-export const getAllPostsByCategoryAndId = async (catName: string | string[] | undefined, id: number) => {
+export const getAllPostsByCategoryAndId: Api.GetAllPostsByCategoryAndId = async (
+  catName: string | string[] | undefined,
+  id: number
+) => {
   try {
     const posts = await client.get({
       endpoint: 'blogs',
       queries: {
+        fields: 'title,slug,eyecatch,publishDate,categories',
         filters: `categories[contains]${catName}`,
         orders: '-publishDate',
         offset: (id - 1) * perPage,
