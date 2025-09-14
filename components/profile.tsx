@@ -2,7 +2,7 @@ import styles from 'styles/profile.module.css'
 import Image from 'next/image'
 // import icon from 'images/icon.jpg'
 const icon = {
-  src: 'https://images.microcms-assets.io/assets/6c9bebd79a7b4ab4acd16979e24f5db0/e14dec1bc8254401a6fd850d9785b24c/icon.jpg',
+  src: 'https://images.microcms-assets.io/assets/6c9bebd79a7b4ab4acd16979e24f5db0/47d18ea526674b8794b5b270d31abb3c/icon_profile.jpg',
   width: 360,
   height: 360,
   blurDataURL: 'data:image/jpeg;base64',
